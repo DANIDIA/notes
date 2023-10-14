@@ -10,13 +10,20 @@
 
 - [ ] Plan (roughly) an API or a backend/database structure
 
-- [ ] In the far-far future: editing of an article
+Much later (if you want):
+- [ ] Editing of an article
+- [ ] Rewrite to TS
 
 ---
 
 ## To learn (to get familiar with):
 
 ### General knowledge:
+
+
+https://dev.to/
+
+ 
 - [x] CRUD operations (learn it!)
 - [ ] Semantic versioning
 - [ ] Conventional commits
@@ -43,9 +50,11 @@
 - [ ] npm/yarn
 - [ ] Jest unit testing & Cypress
 - [ ] Atomic design (https://atomicdesign.bradfrost.com/chapter-2/)
+- [ ] Webpack
 
 
-- [ ] Redux
+- [ ] Redux 
+  - https://dev.to/ruppysuppy/redux-vs-context-api-when-to-use-them-4k3p
 - [ ] React Native
 - [ ] Expo.dev (https://docs.expo.dev/) - crossplatform development for React Native
 
