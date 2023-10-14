@@ -1,6 +1,9 @@
 import {useContext, useState} from "react";
-import {ARTICLES_LOCAL_STORAGE_KEY} from "../HomePage.constants";
-import {HomePageContext} from "../HomePage.context";
+
+import {ARTICLES_LOCAL_STORAGE_KEY} from "../../HomePage.constants";
+import { HomePageContext } from "../../HomePage.context";
+
+import './ArticleCreationForm.styles.css'
 
 export const ArticleCreationForm = () => {
     const [title, setTitle] = useState('')
@@ -25,7 +28,7 @@ export const ArticleCreationForm = () => {
     }
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', maxWidth: 500}}>
+        <div className="article-creation-form">
             <input
                 type="text"
                 placeholder="Article title"
