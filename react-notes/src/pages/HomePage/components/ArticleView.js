@@ -13,9 +13,7 @@ export const ArticleView = () => {
             <h2>
                 {selectedArticle.title}
                 <br />
-                <small>
-                    {new Date(selectedArticle.creationDate).toString()}
-                </small>
+                <small>{selectedArticle.lessonDate}</small>
             </h2>
             <p>{selectedArticle.content}</p>
         </div>
