@@ -51,6 +51,8 @@ https://dev.to/
 - [ ] Jest unit testing & Cypress
 - [ ] Atomic design (https://atomicdesign.bradfrost.com/chapter-2/)
 - [ ] Webpack
+- [ ] Storybook (https://storybook.js.org/)
+- [ ] Web components + LIT (https://lit.dev/)
 
 
 ### React:
