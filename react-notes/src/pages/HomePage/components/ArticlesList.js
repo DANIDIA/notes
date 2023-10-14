@@ -1,7 +1,19 @@
-import { HomePageContext } from "../HomePage.context";
+import {HomePageContext} from "../HomePage.context";
+import {useContext, useEffect} from "react";
+import {ARTICLES_LOCAL_STORAGE_KEY} from "../HomePage.constants";
 
 export const ArticlesList = () => {
-    const { articles } = useContext(HomePageContext);
+    const {articles, setArticles, setSelectedArticle} = useContext(HomePageContext);
+
+
+    useEffect(() => {
+        const _articles = JSON.parse(localStorage.getItem(ARTICLES_LOCAL_STORAGE_KEY));
+        if (_articles) {
+            setArticles([..._articles]);
+        }
+
+        // eslint-disable-next-line
+    }, []);
 
     const handleArticleTitleClick = (creationDate) => {
         setSelectedArticle(articles.find((article) => article.creationDate === creationDate));
