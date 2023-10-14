@@ -53,17 +53,20 @@ https://dev.to/
 - [ ] Webpack
 
 
+### React:
 - [ ] Redux 
   - https://dev.to/ruppysuppy/redux-vs-context-api-when-to-use-them-4k3p
 - [ ] React Native
 - [ ] Expo.dev (https://docs.expo.dev/) - crossplatform development for React Native
+- [ ] HOC (Higher order components)
 
-
+### Vue:
 - [ ] Pinia
 - [ ] VueJS (v3)
 - [ ] Quasar - crossplatform for Vue
 
 
+### NodeJS:
 - [ ] NodeJS
 - [ ] ExpressJS - API on NodeJS
 
