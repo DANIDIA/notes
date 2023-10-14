@@ -12,7 +12,6 @@ export const ArticleCreationForm = () => {
     const { articles, setArticles } = useContext(HomePageContext);
 
     const handleAddArticleClick = () => {
-        // ToDo: create a unique id for each new article
 
         if (!title.trim() || !content.trim()) return;
 
