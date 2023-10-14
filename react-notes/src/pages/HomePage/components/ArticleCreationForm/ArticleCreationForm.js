@@ -1,14 +1,14 @@
-import {useContext, useState} from "react";
+import { useContext, useState } from 'react';
 
-import {ARTICLES_LOCAL_STORAGE_KEY} from "../../HomePage.constants";
-import { HomePageContext } from "../../HomePage.context";
+import { ARTICLES_LOCAL_STORAGE_KEY } from '../../HomePage.constants';
+import { HomePageContext } from '../../HomePage.context';
 
-import './ArticleCreationForm.styles.css'
+import './ArticleCreationForm.styles.css';
 
 export const ArticleCreationForm = () => {
-    const [title, setTitle] = useState('')
-    const [content, setContent] = useState('')
-    const { articles, setArticles } = useContext(HomePageContext)
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+    const { articles, setArticles } = useContext(HomePageContext);
 
     const handleAddArticleClick = () => {
         // ToDo: prevent adding article with empty title or content
@@ -17,15 +17,18 @@ export const ArticleCreationForm = () => {
         _articles.push({
             title,
             content,
-            creationDate: Date.now()
-        })
+            creationDate: Date.now(),
+        });
 
-        localStorage.setItem(ARTICLES_LOCAL_STORAGE_KEY, JSON.stringify(_articles))
+        localStorage.setItem(
+            ARTICLES_LOCAL_STORAGE_KEY,
+            JSON.stringify(_articles),
+        );
 
-        setArticles(_articles)
-        setTitle('')
-        setContent('')
-    }
+        setArticles(_articles);
+        setTitle('');
+        setContent('');
+    };
 
     return (
         <div className="article-creation-form">
@@ -42,5 +45,5 @@ export const ArticleCreationForm = () => {
             />
             <button onClick={handleAddArticleClick}>Add article</button>
         </div>
-    )
-}
+    );
+};

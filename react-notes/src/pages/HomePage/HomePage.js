@@ -1,17 +1,21 @@
-import {HomePageContext, HomePageContextProvider} from "./HomePage.context";
-import {ArticleCreationForm, ArticlesActionButtons, ArticlesList, ArticleView} from "./components";
-import {useContext} from "react";
+import { HomePageContextProvider } from './HomePage.context';
+import {
+    ArticleCreationForm,
+    ArticlesActionButtons,
+    ArticlesList,
+    ArticleView,
+} from './components';
 
 export const HomePage = () => (
     <HomePageContextProvider>
         <div>
-            <ArticleCreationForm/>
+            <ArticleCreationForm />
 
-            <ArticlesActionButtons/>
+            <ArticlesActionButtons />
 
-            <ArticlesList/>
+            <ArticlesList />
 
-            <ArticleView/>
+            <ArticleView />
         </div>
     </HomePageContextProvider>
 );
