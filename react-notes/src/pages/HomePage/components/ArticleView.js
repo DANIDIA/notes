@@ -4,6 +4,10 @@ import { HomePageContext } from '../HomePage.context';
 export const ArticleView = () => {
     const { selectedArticle } = useContext(HomePageContext);
 
+    // ToDo: implement removing of an article
+
+    // ToDo: Far later: editing of an article
+
     return !!selectedArticle ? (
         <div>
             <h2>

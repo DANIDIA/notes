@@ -12,6 +12,8 @@ export const ArticleCreationForm = () => {
 
     const handleAddArticleClick = () => {
         // ToDo: prevent adding article with empty title or content
+        // ToDo: create a unique id for each new article
+
         const _articles = [...articles];
 
         _articles.push({
