@@ -1,21 +1,19 @@
-import {HomePageContextProvider} from "./HomePage.context";
+import {HomePageContext, HomePageContextProvider} from "./HomePage.context";
 import {ArticleCreationForm, ArticlesActionButtons, ArticlesList, ArticleView} from "./components";
+import {useContext} from "react";
 
-export const HomePage = () => {
+export const HomePage = () => (
+    <HomePageContextProvider>
+        <div>
+            <ArticleCreationForm/>
 
-    return (
-        <HomePageContextProvider>
-            <div>
-                <ArticleCreationForm/>
+            <ArticlesActionButtons/>
 
-                <ArticlesActionButtons/>
+            <ArticlesList/>
 
-                <ArticlesList/>
-
-                <ArticleView/>
-            </div>
-        </HomePageContextProvider>
-    );
-};
+            <ArticleView/>
+        </div>
+    </HomePageContextProvider>
+);
 
 export default HomePage;
