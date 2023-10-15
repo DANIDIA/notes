@@ -18,22 +18,18 @@ export const ArticlesList = () => {
         // eslint-disable-next-line
     }, []);
 
-    const handleArticleTitleClick = (creationDate) => {
-        setSelectedArticle(
-            articles.find((article) => article.creationDate === creationDate),
-        );
+    const handleArticleTitleClick = (id) => {
+        setSelectedArticle(articles.find((article) => article.id === id));
     };
 
     return (
         <div>
             <h3>Articles list</h3>
             <ul>
-                {articles.map((article, key) => (
+                {articles.map((article) => (
                     <li
-                        key={key}
-                        onClick={() =>
-                            handleArticleTitleClick(article.creationDate)
-                        }
+                        key={article.id}
+                        onClick={() => handleArticleTitleClick(article.id)}
                     >
                         <b>{article.title}</b>
                     </li>
