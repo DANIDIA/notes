@@ -23,7 +23,7 @@ export const ArticlesActionButtons = () => {
     };
 
     const handleImportButtonClick = () => {
-        var element = document.createElement('input');
+        const element = document.createElement('input');
         element.setAttribute('type', 'file');
         element.addEventListener('change', async (e) => {
             const file = e.target.files.item(0);

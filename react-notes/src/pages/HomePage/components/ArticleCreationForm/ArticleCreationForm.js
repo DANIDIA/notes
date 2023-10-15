@@ -8,18 +8,20 @@ import './ArticleCreationForm.styles.css';
 export const ArticleCreationForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [lessonDate, setDate] = useState('');
     const { articles, setArticles } = useContext(HomePageContext);
 
     const handleAddArticleClick = () => {
-        // ToDo: prevent adding article with empty title or content
-        // ToDo: create a unique id for each new article
+
+        if (!title.trim() || !content.trim()) return;
 
         const _articles = [...articles];
-
+        console.log(lessonDate);
         _articles.push({
             title,
             content,
-            creationDate: Date.now(),
+            lessonDate,
+            id: Date.now(),
         });
 
         localStorage.setItem(
@@ -34,12 +36,15 @@ export const ArticleCreationForm = () => {
 
     return (
         <div className="article-creation-form">
-            <input
-                type="text"
-                placeholder="Article title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-            />
+            <div>
+                <input
+                    type="text"
+                    placeholder="Article title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+                <input type="date" onChange={(e) => setDate(e.target.value)} />
+            </div>
             <textarea
                 placeholder="Article content"
                 value={content}
