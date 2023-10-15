@@ -1,6 +1,7 @@
-import { HomePageContext } from '../HomePage.context';
 import { useContext, useEffect } from 'react';
+
 import { ARTICLES_LOCAL_STORAGE_KEY } from '../HomePage.constants';
+import { HomePageContext } from '../HomePage.context';
 
 export const ArticlesList = () => {
     const { articles, setArticles, setSelectedArticle } =
