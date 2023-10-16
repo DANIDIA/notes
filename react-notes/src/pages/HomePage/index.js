@@ -1,6 +1,7 @@
-import { HomePage } from './HomePage'
+import { HomePage } from './HomePage';
 
-export { HomePage }
-export * from './HomePage.constants'
+export { HomePage };
+export * from './HomePage.constants';
+export * from './components/ArticleCreationForm';
 
-export default HomePage
+export default HomePage;
