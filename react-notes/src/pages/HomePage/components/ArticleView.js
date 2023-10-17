@@ -1,5 +1,5 @@
 import { Form, redirect, useLoaderData } from 'react-router-dom';
-import { deleteArticle, getArticle } from '../articles';
+import { deleteArticle, getArticle } from '../../../articles';
 
 export function articleLoader({ params }) {
     const article = getArticle(params.articleId);

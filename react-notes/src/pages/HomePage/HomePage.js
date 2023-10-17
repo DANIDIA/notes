@@ -1,10 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { HomePageContextProvider } from './HomePage.context';
-import {
-    ArticleCreationForm,
-    ArticlesActionButtons,
-    ArticlesList,
-} from './components';
+import { ArticlesActionButtons, ArticlesList } from './components';
 
 export const HomePage = () => {
     return (
@@ -12,7 +8,6 @@ export const HomePage = () => {
             <div>
                 <ArticlesList />
                 <ArticlesActionButtons />
-                <ArticleCreationForm />
                 <Outlet />
             </div>
         </HomePageContextProvider>

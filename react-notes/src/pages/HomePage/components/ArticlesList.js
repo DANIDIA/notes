@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from 'react-router-dom';
-import { getArticles } from '../articles';
+import { getArticles } from '../../../articles';
 
 export async function articlesListLoader() {
     return getArticles();
