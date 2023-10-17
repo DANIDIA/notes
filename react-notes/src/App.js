@@ -1,4 +1,9 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+    createBrowserRouter,
+    createRoutesFromElements,
+    Route,
+    RouterProvider,
+} from 'react-router-dom';
 
 import HomePage, {
     ArticleCreationForm,
@@ -10,27 +15,28 @@ import ErrorPage from './ErrorPage';
 import { articleLoader } from './pages/HomePage/components/ArticleView';
 import { articlesListLoader } from './pages/HomePage/components/ArticlesList';
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <HomePage />,
-        errorElement: <ErrorPage />,
-        loader: articlesListLoader,
-        children: [
-            {
-                path: '/',
-                element: <ArticleCreationForm />,
-                action: createFormAction,
-            },
-            {
-                path: 'article/:articleId',
-                element: <ArticleView />,
-                loader: articleLoader,
-                action: articleAction,
-            },
-        ],
-    },
-]);
+const router = createBrowserRouter(
+    createRoutesFromElements(
+        <Route
+            path="/"
+            element=<HomePage />
+            errorElement=<ErrorPage />
+            loader={articlesListLoader}
+        >
+            <Route
+                path="/"
+                element=<ArticleCreationForm />
+                action={createFormAction}
+            />
+            <Route
+                path="article/:articleId"
+                element=<ArticleView />
+                loader={articleLoader}
+                action={articleAction}
+            />
+        </Route>,
+    ),
+);
 
 const App = () => <RouterProvider router={router} />;
 
