@@ -1,14 +1,21 @@
 import { Outlet } from 'react-router-dom';
 import { HomePageContextProvider } from './HomePage.context';
-import { ArticlesActionButtons, ArticlesList } from './components';
+import { ArticlesActionButtons, Navbar } from './components';
+import './HomePage.styles.css';
+import { useState } from 'react';
 
 export const HomePage = () => {
+    const [height, setHeight] = useState(document.documentElement.clientHeight);
+
     return (
         <HomePageContextProvider>
-            <div>
-                <ArticlesList />
-                <ArticlesActionButtons />
-                <Outlet />
+            <div style={{ height }}>
+                <div className="fixed-content">
+                    <Navbar />
+                </div>
+                <div className="scrollable-content">
+                    <Outlet />
+                </div>
             </div>
         </HomePageContextProvider>
     );

@@ -10,10 +10,12 @@ import HomePage, {
     createFormAction,
     articleAction,
     ArticleView,
+    articleLoader,
+    articlesListLoader,
 } from './pages/HomePage';
 import ErrorPage from './ErrorPage';
-import { articleLoader } from './pages/HomePage/components/ArticleView';
-import { articlesListLoader } from './pages/HomePage/components/ArticlesList';
+import './reset.css';
+import './style.css';
 
 const router = createBrowserRouter(
     createRoutesFromElements(

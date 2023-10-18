@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './ArticleCreationForm.styles.css';
 import { Form } from 'react-router-dom';
 import { createArticle } from '../../../../articles';
+import { Button } from '../../../../components/Button';
 
 export async function createFormAction({ request }) {
     const article = Object.fromEntries(await request.formData());
@@ -32,30 +33,39 @@ export const ArticleCreationForm = () => {
             className="article-creation-form"
             onSubmit={handleClearSubmit}
         >
-            <div>
+            <div className="title-date-container">
                 <input
+                    className="title-input"
                     type="text"
-                    placeholder="Article title"
+                    placeholder="Title..."
                     value={title}
                     name="title"
                     onChange={(e) => setTitle(e.target.value)}
                 />
                 <input
+                    className="date-input"
                     type="date"
                     name="lessonDate"
                     onChange={(e) => setLessonDate(e.target.value)}
                     value={lessonDate}
                 />
             </div>
+
             <textarea
-                placeholder="Article content"
+                placeholder="Write something..."
                 value={content}
                 name="content"
                 onChange={(e) => setContent(e.target.value)}
+                className="content-input"
             />
-            <button onClick={handleAddArticleClick} type="submit">
+
+            <Button
+                style={{ marginLeft: 'auto' }}
+                onClick={handleAddArticleClick}
+                type="submit"
+            >
                 Add article
-            </button>
+            </Button>
         </Form>
     );
 };

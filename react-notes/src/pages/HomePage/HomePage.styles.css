@@ -1,0 +1,18 @@
+.fixed-content{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    top: 0;
+    left: 0;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.scrollable-content{
+    width: 75%;
+    padding: 50px 0 25px var(--nav-bar-width); 
+    margin: 0 auto;
+    overflow: hidden;
+    height: 100%
+}

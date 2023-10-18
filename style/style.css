@@ -6,6 +6,7 @@
     --bg-color: #282c34;
     --nav-bar-color: #21252b;
     --normal-text-color: #e2e3e7;
+    
 
     --nav-bar-width: 300px;
 }
@@ -36,8 +37,6 @@ body{
 .scrolable-content{
     min-height: 100%
 }
-
-
 
 .content{
     width: 75%;

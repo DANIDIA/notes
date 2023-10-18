@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&family=Roboto:wght@100;400;700&display=swap');
+
+:root{
+    --bg-color: #282c34;
+    --nav-bar-color: #21252b;
+    --normal-text-color: #e2e3e7;
+    --non-accent: #505357;
+
+    --nav-bar-width: 300px;
+}
+
+body{
+    background-color: var(--bg-color);
+    color: var(--normal-text-color);
+    font-family: 'Roboto';
+    overflow: hidden;
+}

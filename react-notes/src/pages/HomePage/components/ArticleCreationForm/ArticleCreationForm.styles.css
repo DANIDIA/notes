@@ -1,5 +1,46 @@
 .article-creation-form {
     display: flex;
     flex-direction: column;
-    max-width: 500px
+    width: 100%;
+}
+
+.title-date-container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    align-items: flex-end;
+}
+
+.title-input, .date-input{
+    background-color: inherit;
+    padding: 10px 0;
+}
+
+.title-input{
+    color: var(--normal-text-color);
+    font-size: 25px;
+    width: 400px;
+}
+
+.date-input{
+    color: var(--non-accent);
+    font-size: 17px;
+    width: 150px;
+}
+
+.content-input{
+    margin-bottom: 30px;
+    height: 700px;
+    background-color: inherit;
+    width: 100%;
+    color: var(--normal-text-color);
+}
+
+.content-input::placeholder{
+    color: var(--non-accent);
+}
+
+.title-input::placeholder{
+    color: var(--non-accent);
+    text-transform: uppercase;
 }
