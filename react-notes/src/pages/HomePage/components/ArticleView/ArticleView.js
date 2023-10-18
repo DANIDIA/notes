@@ -26,7 +26,7 @@ export const ArticleView = () => {
                     <Button className={styles.deleteButton} type="submit">
                         Delete
                     </Button>
-                    <Button type="submit">Change</Button>
+                    <Button type="submit">Edit</Button>
                 </Form>
             </div>
             <h1 className={styles.title}>{selectedArticle.title}</h1>

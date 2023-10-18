@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { HomePageContextProvider } from './HomePage.context';
 import { ArticlesActionButtons, Navbar } from './components';
-import './HomePage.styles.css';
+import styles from './HomePage.module.css';
 import { useState } from 'react';
 
 export const HomePage = () => {
@@ -10,11 +10,11 @@ export const HomePage = () => {
     return (
         <HomePageContextProvider>
             <div style={{ height }}>
-                <div className="fixed-content">
-                    <Navbar />
-                </div>
-                <div className="scrollable-content">
+                <div className={styles.content}>
                     <Outlet />
+                </div>
+                <div>
+                    <Navbar />
                 </div>
             </div>
         </HomePageContextProvider>
