@@ -1,10 +1,5 @@
 import { Link, useLoaderData } from 'react-router-dom';
-import { getArticles } from '../../../../articles';
 import './Navbar.styles.css';
-
-export async function articlesListLoader() {
-    return getArticles();
-}
 
 export const Navbar = () => {
     const articles = useLoaderData();

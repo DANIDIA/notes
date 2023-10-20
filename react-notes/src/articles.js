@@ -27,3 +27,11 @@ export function deleteArticle(id) {
         JSON.stringify(articles.filter((article) => article.id !== id)),
     );
 }
+
+export function getArticlesInJSON() {
+    return localStorage.getItem(ARTICLES_LOCAL_STORAGE_KEY);
+}
+
+export function loadArticlesFromJSON(json) {
+    localStorage.setItem(ARTICLES_LOCAL_STORAGE_KEY, json);
+}

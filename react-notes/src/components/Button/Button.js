@@ -1,11 +1,8 @@
 import styles from './Button.module.css';
 
-export function Button({ children, className, style,  }) {
+export function Button({ children, ...params }) {
     return (
-        <button
-            style={{ ...style }}
-            className={`${styles.button} ${className}`}
-        >
+        <button {...params} className={`${styles.button} ${params.className}`}>
             {children}
         </button>
     );

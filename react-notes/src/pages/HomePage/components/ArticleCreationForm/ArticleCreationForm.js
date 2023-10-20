@@ -1,26 +1,18 @@
 import { useState } from 'react';
 
-import './ArticleCreationForm.styles.css';
-import { Form } from 'react-router-dom';
-import { createArticle } from '../../../../articles';
 import { Button } from '../../../../components/Button';
 
-export async function createFormAction({ request }) {
-    const article = Object.fromEntries(await request.formData());
-    createArticle(article);
-    return article;
-}
+import { Form } from 'react-router-dom';
+import './ArticleCreationForm.styles.css';
 
 export const ArticleCreationForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [lessonDate, setLessonDate] = useState('');
 
-    const handleAddArticleClick = (e) => {
+    const handleClearSubmit = (e) => {
         if (!title.trim() || !content.trim() || !lessonDate) e.preventDefault();
-    };
 
-    const handleClearSubmit = () => {
         setTitle('');
         setContent('');
         setLessonDate('');
@@ -60,8 +52,9 @@ export const ArticleCreationForm = () => {
             />
 
             <Button
+                name="intent"
+                value="create"
                 style={{ marginLeft: 'auto' }}
-                onClick={handleAddArticleClick}
                 type="submit"
             >
                 Add article

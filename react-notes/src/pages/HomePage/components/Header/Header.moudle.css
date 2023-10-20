@@ -1,0 +1,7 @@
+.inputLable{
+    
+}
+
+input[type="file"]{
+    display:none;
+}

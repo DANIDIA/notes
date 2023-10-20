@@ -7,12 +7,13 @@ import {
 
 import HomePage, {
     ArticleCreationForm,
-    createFormAction,
+    homePageAction,
     articleAction,
     ArticleView,
     articleLoader,
-    articlesListLoader,
+    homePageLoader,
 } from './pages/HomePage';
+
 import ErrorPage from './ErrorPage';
 import './reset.css';
 import './style.css';
@@ -23,12 +24,12 @@ const router = createBrowserRouter(
             path="/"
             element=<HomePage />
             errorElement=<ErrorPage />
-            loader={articlesListLoader}
+            loader={homePageLoader}
         >
             <Route
                 path="/"
                 element=<ArticleCreationForm />
-                action={createFormAction}
+                action={homePageAction}
             />
             <Route
                 path="article/:articleId"
