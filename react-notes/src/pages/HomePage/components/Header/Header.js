@@ -1,6 +1,6 @@
-import { Form, useSubmit } from 'react-router-dom';
+import { Form, Link, useSubmit } from 'react-router-dom';
 
-import styles from './Header.moudle.css';
+import styles from './Header.module.css';
 
 export const Header = () => {
     const submit = useSubmit();
@@ -16,14 +16,29 @@ export const Header = () => {
     };
 
     return (
-        <div>
-            <Form onChange={handleImportFormChange} method="post">
-                <button name="intent" value="export" type="submit">
+        <div className={styles.header}>
+            <Link className={styles.logo}>HOME</Link>
+            <Form
+                className={styles.exportImportButtons}
+                onChange={handleImportFormChange}
+                method="post"
+            >
+                <button
+                    className={styles.exportBtn}
+                    name="intent"
+                    value="export"
+                    type="submit"
+                >
                     Export articles
                 </button>
+                <div className={styles.verticalLine}></div>
                 <label className={styles.inputLable}>
                     Import articles
-                    <input name="import" type="file" />
+                    <input
+                        className={styles.fileInput}
+                        name="import"
+                        type="file"
+                    />
                 </label>
             </Form>
         </div>

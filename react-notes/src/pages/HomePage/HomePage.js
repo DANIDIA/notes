@@ -17,10 +17,8 @@ export async function homePageAction({ request, params }) {
     const intent = formData.get('intent');
     const handler = handleAction[intent];
 
-    console.log('home page action');
-
     if (handler) await handler(params, formData);
-    else throw new Error(`There arn't a handler for '${intent}' in HomePage`);
+    else throw new Error(`There is not a handler for '${intent}' in HomePage`);
 
     return null;
 }
@@ -33,7 +31,9 @@ export const HomePage = () => {
             <div style={{ height }}>
                 <div className={styles.content}>
                     <Header />
-                    <Outlet />
+                    <div className={styles.articleContainer}>
+                        <Outlet />
+                    </div>
                 </div>
                 <div>
                     <Navbar />
