@@ -2,7 +2,10 @@ import { v1 } from 'uuid';
 import { ARTICLES_LOCAL_STORAGE_KEY } from './pages/HomePage';
 
 function exportArticles() {
-    return JSON.parse(localStorage.getItem(ARTICLES_LOCAL_STORAGE_KEY)) || [];
+    const articles = Array.from(
+        JSON.parse(localStorage.getItem(ARTICLES_LOCAL_STORAGE_KEY)),
+    );
+    return articles || [];
 }
 
 export function createArticle(article) {

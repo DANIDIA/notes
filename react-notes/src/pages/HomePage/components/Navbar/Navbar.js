@@ -4,6 +4,7 @@ import './Navbar.styles.css';
 
 export const Navbar = (props) => {
     const articles = useLoaderData();
+    articles.sort((a, b) => new Date(a.lessonDate) - new Date(b.lessonDate));
 
     return (
         <div {...props} className="navbar">
