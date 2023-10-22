@@ -41,6 +41,8 @@
     background-color: inherit;
     color: var(--normal-text-color);
     transition:  200ms;
+    font-size: 15px;
+    font-weight: lighter;
 }
 
 .inputLable:hover, .exportBtn:hover{
@@ -60,4 +62,8 @@
 
 .fileInput{
     display:none;
+}
+
+.boldText{
+    font-weight: bolder;
 }

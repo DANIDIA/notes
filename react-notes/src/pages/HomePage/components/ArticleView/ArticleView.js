@@ -1,8 +1,9 @@
 import { Form, redirect, useLoaderData } from 'react-router-dom';
+
 import { deleteArticle, getArticle } from '../../../../articles';
+import { Button } from '../../../../components/Button';
 
 import styles from './ArticleView.module.css';
-import { Button } from '../../../../components/Button';
 
 export function articleLoader({ params }) {
     const article = getArticle(params.articleId);

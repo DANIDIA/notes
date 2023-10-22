@@ -1,4 +1,5 @@
 import { Link, useLoaderData } from 'react-router-dom';
+
 import './Navbar.styles.css';
 
 export const Navbar = (props) => {

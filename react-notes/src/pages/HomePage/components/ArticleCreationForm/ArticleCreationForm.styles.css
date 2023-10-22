@@ -28,6 +28,19 @@
     width: 150px;
 }
 
+::-webkit-datetime-edit-text { 
+    padding-right: 5px; 
+}
+
+::-webkit-calendar-picker-indicator { 
+    transition: 200ms;
+    cursor: pointer 
+}
+
+.date-input:hover::-webkit-calendar-picker-indicator{
+    background-color: var(--non-accent);
+}
+
 .content-input{
     margin-bottom: 30px;
     height: 700px;

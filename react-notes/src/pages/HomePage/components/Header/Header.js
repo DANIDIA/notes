@@ -2,7 +2,7 @@ import { Form, Link, useSubmit } from 'react-router-dom';
 
 import styles from './Header.module.css';
 
-export const Header = (props) => {
+export const Header = () => {
     const submit = useSubmit();
 
     const handleImportFormChange = async (event) => {
@@ -29,11 +29,13 @@ export const Header = (props) => {
                     value="export"
                     type="submit"
                 >
-                    Export articles
+                    <span className={styles.boldText}>Export</span>
+                    &nbsp;articles
                 </button>
                 <div className={styles.verticalLine}></div>
                 <label className={styles.inputLable}>
-                    Import articles
+                    <span className={styles.boldText}>Import</span>
+                    &nbsp;articles
                     <input
                         className={styles.fileInput}
                         name="import"

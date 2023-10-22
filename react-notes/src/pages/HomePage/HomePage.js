@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 import { getArticles } from '../../articles';
 
@@ -25,8 +25,6 @@ export async function homePageAction({ request, params }) {
 
 export const HomePage = () => {
     const [height, setHeight] = useState(document.documentElement.clientHeight);
-    const header = useRef();
-    const [headerBottom, setHeaderBottom] = useState(0);
 
     return (
         <HomePageContextProvider>
