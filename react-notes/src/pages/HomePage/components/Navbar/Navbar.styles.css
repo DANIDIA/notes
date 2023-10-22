@@ -9,9 +9,11 @@
     overflow: hidden;
     justify-content: space-between;
     padding-top: 20px;
-    position: fixed;
+    position: sticky;
+    position: -webkit-sticky;
     top: 0;
     height: 100%;
+    align-self: flex-start
 }
 
 .content{

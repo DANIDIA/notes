@@ -2,7 +2,7 @@ import { Form, Link, useSubmit } from 'react-router-dom';
 
 import styles from './Header.module.css';
 
-export const Header = () => {
+export const Header = (props) => {
     const submit = useSubmit();
 
     const handleImportFormChange = async (event) => {
@@ -16,7 +16,7 @@ export const Header = () => {
     };
 
     return (
-        <div className={styles.header}>
+        <header className={styles.header}>
             <Link className={styles.logo}>HOME</Link>
             <Form
                 className={styles.exportImportButtons}
@@ -41,6 +41,6 @@ export const Header = () => {
                     />
                 </label>
             </Form>
-        </div>
+        </header>
     );
 };

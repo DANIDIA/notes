@@ -1,11 +1,11 @@
 import { Link, useLoaderData } from 'react-router-dom';
 import './Navbar.styles.css';
 
-export const Navbar = () => {
+export const Navbar = (props) => {
     const articles = useLoaderData();
 
     return (
-        <div className="navbar">
+        <div {...props} className="navbar">
             <div className="content">
                 <h3 className="title">Articles: </h3>
                 <ul>

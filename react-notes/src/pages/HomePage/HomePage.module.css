@@ -1,11 +1,10 @@
 .content{
-    overflow: hidden;
-    height: 100%;
     width: 100%;
+    display: flex;
 }
 
 .articleContainer{
     width: 75%;
-    padding: 50px 0 25px var(--nav-bar-width); 
+    padding: 50px 0;
     margin: 0 auto;
 }
