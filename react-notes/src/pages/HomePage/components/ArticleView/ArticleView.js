@@ -1,4 +1,4 @@
-import { Form, redirect, useLoaderData } from 'react-router-dom';
+import { Form, Link, redirect, useLoaderData } from 'react-router-dom';
 
 import { deleteArticle, getArticle } from '../../../../articles';
 import { Button } from '../../../../components/Button';
@@ -10,24 +10,36 @@ export function articleLoader({ params }) {
     return article;
 }
 
-export function articleAction({ params }) {
-    deleteArticle(params.articleId);
-    return redirect('/');
+export async function articleAction({ params, request }) {
+    const formData = await request.formData();
+    const intent = formData.get('intent');
+
+    if (intent == 'delete') {
+        deleteArticle(params.articleId);
+        return redirect('/');
+    } else if (intent == 'goToEditForm') {
+        return redirect(`./edit`);
+    }
 }
 
 export const ArticleView = () => {
     const selectedArticle = useLoaderData();
 
-    // ToDo: Far later: editing of an article
-
     return selectedArticle ? (
         <div>
             <div>
                 <Form className={styles.articleForm} method="post">
-                    <Button className={styles.deleteButton} type="submit">
+                    <Button
+                        name="intent"
+                        value="delete"
+                        className={styles.deleteButton}
+                        type="submit"
+                    >
                         Delete
                     </Button>
-                    <Button type="submit">Edit</Button>
+                    <Button name="intent" value="goToEditForm" type="submit">
+                        Edit
+                    </Button>
                 </Form>
             </div>
             <h1 className={styles.title}>{selectedArticle.title}</h1>

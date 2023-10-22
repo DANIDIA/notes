@@ -1,0 +1,60 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.titleDateContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    align-items: flex-end;
+}
+
+.title, .lessonDate{
+    background-color: inherit;
+    padding: 10px 0;
+}
+
+.title{
+    color: var(--normal-text-color);
+    font-size: 25px;
+    width: 400px;
+}
+
+.title::placeholder{
+    color: var(--non-accent);
+    text-transform: uppercase;
+}
+
+.lessonDate{
+    color: var(--non-accent);
+    font-size: 17px;
+    width: 150px;
+}
+
+.lessonDate::-webkit-datetime-edit-text { 
+    padding-right: 5px; 
+}
+
+.lessonDate::-webkit-calendar-picker-indicator { 
+    transition: 200ms;
+    cursor: pointer 
+}
+
+.lessonDate:hover::-webkit-calendar-picker-indicator{
+    background-color: var(--non-accent);
+}
+
+.content{
+    margin-bottom: 30px;
+    height: 700px;
+    background-color: inherit;
+    width: 100%;
+    color: var(--normal-text-color);
+}
+
+.content::placeholder{
+    color: var(--non-accent);
+}
+

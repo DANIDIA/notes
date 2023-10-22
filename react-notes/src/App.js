@@ -17,6 +17,11 @@ import HomePage, {
 import ErrorPage from './ErrorPage';
 import './reset.css';
 import './style.css';
+import {
+    ArticleEditForm,
+    articleEditFormAction,
+    articleEditFormLoader,
+} from './pages/HomePage/components/ArticleEditForm';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -36,6 +41,12 @@ const router = createBrowserRouter(
                 element=<ArticleView />
                 loader={articleLoader}
                 action={articleAction}
+            />
+            <Route
+                path="article/:articleId/edit"
+                element={<ArticleEditForm />}
+                loader={articleEditFormLoader}
+                action={articleEditFormAction}
             />
         </Route>,
     ),
