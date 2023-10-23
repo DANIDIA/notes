@@ -10,7 +10,7 @@ export async function articleEditFormAction({ params, request }) {
     const formData = await request.formData();
     const articleData = Object.fromEntries(formData);
     const id = params.articleId;
-    delete articleData.intent;
+
     updateArticle(id, articleData);
     return redirect(`/article/${id}`);
 }

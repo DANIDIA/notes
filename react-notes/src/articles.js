@@ -20,9 +20,9 @@ export function getArticlesInJSON() {
     return localStorage.getItem(ARTICLES_LOCAL_STORAGE_KEY);
 }
 
-export function createArticle(article) {
+export function createArticle({ title, lessonDate, content }) {
     const articles = importArticles();
-    articles.push({ ...article, id: v1(Date.now()) });
+    articles.push({ title, lessonDate, content, id: v1(Date.now()) });
     exportArticles(articles);
 }
 
@@ -43,6 +43,6 @@ export function deleteArticle(id) {
 export function updateArticle(id, { title, lessonDate, content }) {
     const articles = importArticles();
     const index = articles.findIndex((article) => article.id === id);
-    articles[index] = { id, title, lessonDate, content };
+    articles[index] = { title, lessonDate, content, id };
     exportArticles(articles);
 }

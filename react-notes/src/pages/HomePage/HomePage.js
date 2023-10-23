@@ -1,10 +1,10 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useOutlet } from 'react-router-dom';
 import { useState } from 'react';
 
 import { getArticles } from '../../articles';
 
 import { HomePageContextProvider } from './HomePage.context';
-import { Header, Navbar } from './components';
+import { ArticleCreationForm, Header, Navbar } from './components';
 import { handleAction } from './HomePage.handleAction';
 import styles from './HomePage.module.css';
 
@@ -25,6 +25,7 @@ export async function homePageAction({ request, params }) {
 
 export const HomePage = () => {
     const [height, setHeight] = useState(document.documentElement.clientHeight);
+    const outlet = useOutlet();
 
     return (
         <HomePageContextProvider>
@@ -33,7 +34,7 @@ export const HomePage = () => {
                 <div className={styles.content}>
                     <Navbar style={{ height: height }} />
                     <div className={styles.articleContainer}>
-                        <Outlet />
+                        {outlet ? <Outlet /> : <ArticleCreationForm />}
                     </div>
                 </div>
             </div>

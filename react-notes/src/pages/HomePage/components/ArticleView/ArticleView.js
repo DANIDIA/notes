@@ -1,4 +1,11 @@
-import { Form, Link, redirect, useLoaderData } from 'react-router-dom';
+import {
+    Form,
+    Link,
+    Outlet,
+    redirect,
+    useLoaderData,
+    useOutlet,
+} from 'react-router-dom';
 
 import { deleteArticle, getArticle } from '../../../../articles';
 import { Button } from '../../../../components/Button';
@@ -24,8 +31,11 @@ export async function articleAction({ params, request }) {
 
 export const ArticleView = () => {
     const selectedArticle = useLoaderData();
+    const outlet = useOutlet();
 
-    return selectedArticle ? (
+    return outlet ? (
+        <Outlet />
+    ) : (
         <div>
             <div>
                 <Form className={styles.articleForm} method="post">
@@ -48,8 +58,7 @@ export const ArticleView = () => {
             </small>
 
             <p className={styles.content}>{selectedArticle.content}</p>
+            <Outlet />
         </div>
-    ) : (
-        <div>Not finded</div>
     );
 };

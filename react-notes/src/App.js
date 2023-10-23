@@ -30,24 +30,21 @@ const router = createBrowserRouter(
             element=<HomePage />
             errorElement=<ErrorPage />
             loader={homePageLoader}
+            action={homePageAction}
         >
-            <Route
-                path="/"
-                element=<ArticleCreationForm />
-                action={homePageAction}
-            />
             <Route
                 path="article/:articleId"
                 element=<ArticleView />
                 loader={articleLoader}
                 action={articleAction}
-            />
-            <Route
-                path="article/:articleId/edit"
-                element={<ArticleEditForm />}
-                loader={articleEditFormLoader}
-                action={articleEditFormAction}
-            />
+            >
+                <Route
+                    path="/article/:articleId/edit"
+                    element={<ArticleEditForm />}
+                    loader={articleEditFormLoader}
+                    action={articleEditFormAction}
+                ></Route>
+            </Route>
         </Route>,
     ),
 );
