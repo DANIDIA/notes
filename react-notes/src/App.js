@@ -6,22 +6,19 @@ import {
 } from 'react-router-dom';
 
 import HomePage, {
-    ArticleCreationForm,
     homePageAction,
     articleAction,
     ArticleView,
     articleLoader,
     homePageLoader,
+    ArticleEditForm,
+    articleEditFormLoader,
+    articleEditFormAction,
 } from './pages/HomePage';
 
 import ErrorPage from './ErrorPage';
 import './reset.css';
 import './style.css';
-import {
-    ArticleEditForm,
-    articleEditFormAction,
-    articleEditFormLoader,
-} from './pages/HomePage/components/ArticleEditForm';
 
 const router = createBrowserRouter(
     createRoutesFromElements(

@@ -1,6 +1,6 @@
 import { redirect, useLoaderData } from 'react-router-dom';
-import { getArticle, updateArticle } from '../../../articles';
-import { ArticleForm } from '../../../components/ArticleForm';
+import { getArticle, updateArticle } from '../../../../../articles';
+import { ArticleForm } from '../../../../../components/ArticleForm';
 
 export function articleEditFormLoader({ params }) {
     return getArticle(params.articleId);
@@ -17,5 +17,5 @@ export async function articleEditFormAction({ params, request }) {
 
 export function ArticleEditForm() {
     const article = useLoaderData();
-    return <ArticleForm articleData={article} buttonText="Save" />;
+    return <ArticleForm articleData={article} buttonText="Save changes" />;
 }

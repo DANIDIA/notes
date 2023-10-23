@@ -1,15 +1,15 @@
 import {
     Form,
-    Link,
     Outlet,
-    redirect,
     useLoaderData,
     useOutlet,
 } from 'react-router-dom';
 
-import { deleteArticle, getArticle } from '../../../../articles';
+import { getArticle } from '../../../../articles';
 import { Button } from '../../../../components/Button';
+import { handlerMatch } from '../../../../handlerMatch';
 
+import { handleAction } from './ArticleView.handleAction';
 import styles from './ArticleView.module.css';
 
 export function articleLoader({ params }) {
@@ -17,16 +17,8 @@ export function articleLoader({ params }) {
     return article;
 }
 
-export async function articleAction({ params, request }) {
-    const formData = await request.formData();
-    const intent = formData.get('intent');
-
-    if (intent == 'delete') {
-        deleteArticle(params.articleId);
-        return redirect('/');
-    } else if (intent == 'goToEditForm') {
-        return redirect(`./edit`);
-    }
+export async function articleAction(args) {
+    return handlerMatch(args, handleAction);
 }
 
 export const ArticleView = () => {

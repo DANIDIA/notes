@@ -7,20 +7,16 @@ import { HomePageContextProvider } from './HomePage.context';
 import { ArticleCreationForm, Header, Navbar } from './components';
 import { handleAction } from './HomePage.handleAction';
 import styles from './HomePage.module.css';
+import { handlerMatch } from '../../handlerMatch';
 
 export async function homePageLoader() {
     return getArticles();
 }
 
-export async function homePageAction({ request, params }) {
-    const formData = await request.formData();
-    const intent = formData.get('intent');
-    const handler = handleAction[intent];
+export async function homePageAction(args) {
+    const redirect = handlerMatch(args, handleAction);
 
-    if (handler) await handler(params, formData);
-    else throw new Error(`There is not a handler for '${intent}' in HomePage`);
-
-    return null;
+    return redirect;
 }
 
 export const HomePage = () => {
