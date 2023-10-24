@@ -1,3 +1,4 @@
+import { redirect } from 'react-router-dom';
 import {
     createArticle,
     getArticlesInJSON,
@@ -5,16 +6,15 @@ import {
 } from '../../articles';
 
 export const handleAction = {
-    create: async function (params, formData) {
-        const article = Object.fromEntries(formData);
-        article.intent = undefined;
-        createArticle(article);
+    createEmptyArticle: async function ({ params, request }, data) {
+        const id = createArticle({ title: '', lessonDate: '', content: '' });
+        return redirect(`/article/${id}/edit`);
     },
-    import: async function (params, formData) {
-        const json = formData.get('fileText');
+    import: async function ({ params, request }, data) {
+        const json = data['fileText'];
         loadArticlesFromJSON(json);
     },
-    export: async function (params, formData) {
+    export: async function ({ params, request }, data) {
         const element = document.createElement('a');
         element.setAttribute(
             'href',

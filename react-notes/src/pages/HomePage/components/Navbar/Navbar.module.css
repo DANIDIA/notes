@@ -2,13 +2,11 @@
     width: var(--nav-bar-width);
     background-color: var(--nav-bar-color);
     border-right: 1px solid #505357;
-    display: flex;
     -webkit-box-shadow: 5px 0px 24px -21px rgba(0, 0, 0, 1);
     -moz-box-shadow: 5px 0px 24px -21px rgba(0, 0, 0, 1);
     box-shadow: 5px 0px 24px -21px rgba(0, 0, 0, 1);
     overflow: hidden;
     justify-content: space-between;
-    padding-top: 20px;
     position: sticky;
     position: -webkit-sticky;
     top: 0;
@@ -16,8 +14,18 @@
     align-self: flex-start
 }
 
-.content{
+.addBtn{
+    padding: 30px 0;
     width: 100%;
+    border-bottom: 3px solid var(--bg-color);
+    color: var(--normal-text-color);
+    background-color: var(--normal-bg-color);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+    transition: 200ms;
+    margin: 0 auto 40px auto;
+    display: block;
 }
 
 .title{
@@ -27,41 +35,21 @@
     padding-left: 14px;
 }
 
-.links-list{
-    padding: 30px 0;
-    width: 100%;
-}
-
-.link{
+.addBtn::before{
+    content: '+';
+    font-size: 17px;
+    margin-right: 10px;
     transition: 200ms;
-    padding: 20px 15px 20px 14px;
-    cursor: pointer;
-    list-style: none;
 }
 
-.link>a{
-    color: var(--normal-text-color);
- }
-
-.link:hover{
+.addBtn:hover{
     background-color: var(--bg-color);
+    color: white;
+    
 }
 
-.link-title{
-    font-size: 14px;
-    line-height: 23px;
+.addBtn:hover::before{
+    color: white;   
 }
 
-.link-addition{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 11px;
-    margin-top: 15px;
-    color: var(--non-accent);    
-    font-weight: 700;
-}
 
-.link-lesson-number{
-    text-transform: uppercase;
-}

@@ -22,8 +22,10 @@ export function getArticlesInJSON() {
 
 export function createArticle({ title, lessonDate, content }) {
     const articles = importArticles();
-    articles.push({ title, lessonDate, content, id: v1(Date.now()) });
+    const id = v1(Date.now());
+    articles.push({ title, lessonDate, content, id });
     exportArticles(articles);
+    return id;
 }
 
 export function getArticles() {

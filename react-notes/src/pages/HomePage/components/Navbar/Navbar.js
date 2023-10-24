@@ -1,32 +1,31 @@
-import { Link, useLoaderData } from 'react-router-dom';
+import { Form, Link, useLoaderData } from 'react-router-dom';
 
-import './Navbar.styles.css';
+import styles from './Navbar.module.css';
+import { ArticleLink } from './components';
 
 export const Navbar = (props) => {
     const articles = useLoaderData();
     articles.sort((a, b) => new Date(a.lessonDate) - new Date(b.lessonDate));
 
     return (
-        <div {...props} className="navbar">
-            <div className="content">
-                <h3 className="title">Articles: </h3>
-                <ul>
-                    {articles.map((article) => (
-                        <li className="link" key={article.id}>
-                            <Link to={`article/${article.id}`}>
-                                <div className="link-title">
-                                    {article.title}
-                                </div>
-                                <div className="link-addition">
-                                    <div className="link-lesson-date">
-                                        {article.lessonDate}
-                                    </div>
-                                </div>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+        <div {...props} className={styles.navbar}>
+            <Form method="post">
+                <button
+                    type="submit"
+                    name="intent"
+                    value="createEmptyArticle"
+                    className={styles.addBtn}
+                >
+                    Add article
+                </button>
+            </Form>
+            <h3 className={styles.title}>Articles: </h3>
+
+            <ul>
+                {articles.map((article) => (
+                    <ArticleLink articleData={article} key={article.id} />
+                ))}
+            </ul>
         </div>
     );
 };

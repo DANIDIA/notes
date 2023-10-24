@@ -30,7 +30,7 @@ export const HomePage = () => {
                 <div className={styles.content}>
                     <Navbar style={{ height: height }} />
                     <div className={styles.articleContainer}>
-                        {outlet ? <Outlet /> : <ArticleCreationForm />}
+                        <Outlet />
                     </div>
                 </div>
             </div>

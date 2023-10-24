@@ -6,6 +6,6 @@ export async function handlerMatch({ params, request }, handlers) {
 
     if (!handler) throw new Error(`No handlers for '${intent}' intent`);
 
-    const redirect = handler({ params, request }, data);
+    const redirect = await handler({ params, request }, data);
     return redirect || null;
 }

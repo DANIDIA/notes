@@ -1,0 +1,35 @@
+.container{
+    transition: 200ms;
+    padding: 20px 15px 20px 14px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.container>a{
+    color: var(--normal-text-color);
+ }
+
+.container:hover{
+    background-color: var(--bg-color);
+}
+
+.title{
+    font-size: 14px;
+    line-height: 23px;
+}
+
+.untitled{
+    color: var(--non-accent);
+}
+
+.lessonDate{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    margin-top: 15px;
+    color: var(--non-accent);    
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
