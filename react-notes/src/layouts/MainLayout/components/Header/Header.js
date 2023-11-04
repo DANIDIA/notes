@@ -17,7 +17,10 @@ export const Header = () => {
 
     return (
         <header className={styles.header}>
-            <Link className={styles.logo}>HOME</Link>
+            <Link to="/" className={styles.logo}>
+                HOME
+            </Link>
+
             <Form
                 className={styles.exportImportButtons}
                 onChange={handleImportFormChange}
@@ -32,7 +35,9 @@ export const Header = () => {
                     <span className={styles.boldText}>Export</span>
                     &nbsp;articles
                 </button>
-                <div className={styles.verticalLine}></div>
+
+                <div className={styles.verticalLine} />
+
                 <label className={styles.inputLable}>
                     <span className={styles.boldText}>Import</span>
                     &nbsp;articles

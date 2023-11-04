@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mooli&family=Roboto:wght@100;400;700&display=swap');
+@import "reset.css";
 
 :root{
     --bg-color: #282c34;
@@ -12,7 +13,7 @@
 body{
     background-color: var(--bg-color);
     color: var(--normal-text-color);
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
 }
 
 ::-webkit-scrollbar {

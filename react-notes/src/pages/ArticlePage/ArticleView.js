@@ -1,16 +1,13 @@
 import { Form, Outlet, useLoaderData, useOutlet } from 'react-router-dom';
 
-import { getArticle } from '../../articles';
-import { Button } from '../../components/Button';
-import { handlerMatch } from '../../handlerMatch';
+import { getArticle } from './articles';
+import { Button } from '../../components';
+import { handlerMatch } from '../../router/handlerMatch';
 
 import { handleAction } from './ArticleView.handleAction';
 import styles from './ArticleView.module.css';
 
-export function articleLoader({ params }) {
-    const article = getArticle(params.articleId);
-    return article;
-}
+export const articleLoader = ({ params }) => getArticle(params.articleId);
 
 export async function articleAction(args) {
     return handlerMatch(args, handleAction);

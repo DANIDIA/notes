@@ -1,5 +1,5 @@
-import { getArticles } from '../../articles';
-import { handlerMatch } from '../../handlerMatch';
+import { getArticles } from '../../pages/ArticlePage/articles';
+import { handlerMatch } from '../../router/handlerMatch';
 import { handleAction } from './MainLayout.handleAction';
 
 export const mainLayoutLoader = async () => getArticles();

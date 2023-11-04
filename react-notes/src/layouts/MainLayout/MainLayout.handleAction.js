@@ -3,10 +3,10 @@ import {
     createArticle,
     getArticlesInJSON,
     loadArticlesFromJSON,
-} from '../../articles';
+} from '../../pages/ArticlePage/articles';
 
 export const handleAction = {
-    createEmptyArticle: async function ({ params, request }, data) {
+    createEmptyArticle: async function () {
         const id = createArticle({ title: '', lessonDate: '', content: '' });
         return redirect(`/article/${id}/edit`);
     },
@@ -14,7 +14,7 @@ export const handleAction = {
         const json = data['fileText'];
         loadArticlesFromJSON(json);
     },
-    export: async function ({ params, request }, data) {
+    export: async function () {
         const element = document.createElement('a');
         element.setAttribute(
             'href',

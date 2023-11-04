@@ -1,8 +1,8 @@
 import { Form, redirect, useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 
-import { getArticle, updateArticle } from '../../../../articles';
-import { Button } from '../../../../components/Button';
+import { getArticle, updateArticle } from '../../articles';
+import { Button } from '../../../../components';
 
 import styles from './ArticleEditForm.module.css';
 
