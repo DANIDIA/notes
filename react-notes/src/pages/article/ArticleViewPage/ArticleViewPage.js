@@ -2,8 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button } from '../../../components';
 import styles from './ArticleViewPage.module.css';
-import { getArticle } from './ArticleViewPage.helpers';
-import { sendArticles, fetchArticles } from '../helpers';
+import { sendArticles, fetchArticles, getArticle } from '../helpers';
 
 export const ArticleViewPage = () => {
     const { articleId } = useParams();

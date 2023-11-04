@@ -14,3 +14,7 @@ export const fetchArticles = () => {
 export const sendArticles = (articles) => {
     localStorage.setItem(ARTICLES_LOCAL_STORAGE_KEY, JSON.stringify(articles));
 };
+
+export const getArticle = (id) => {
+    return fetchArticles().find((article) => article.id === id);
+};

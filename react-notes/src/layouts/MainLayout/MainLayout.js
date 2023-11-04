@@ -9,8 +9,10 @@ export const MainLayout = () => {
     return (
         <div style={{ minHeight: height }}>
             <Header />
+
             <div className={styles.content}>
                 <Sidebar style={{ height: height }} />
+
                 <div className={styles.articleContainer}>
                     <Outlet />
                 </div>

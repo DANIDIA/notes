@@ -1,8 +1,7 @@
 import React from 'react';
 import { ArticleEditForm } from '../components';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getArticle } from '../ArticleViewPage/ArticleViewPage.helpers';
-import { fetchArticles, sendArticles } from '../helpers';
+import { fetchArticles, getArticle, sendArticles } from '../helpers';
 
 export const ArticleEditPage = () => {
     const { articleId } = useParams();
