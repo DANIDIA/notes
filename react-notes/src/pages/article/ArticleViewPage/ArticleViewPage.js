@@ -2,11 +2,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button } from '../../../components';
 import styles from './ArticleViewPage.module.css';
-import { sendArticles, fetchArticles, getArticle } from '../helpers';
+import { useContext } from 'react';
+import { ArticlesContext } from '../context';
 
 export const ArticleViewPage = () => {
     const { articleId } = useParams();
     const navigate = useNavigate();
+    const { getArticle, sendArticles, fetchArticles } =
+        useContext(ArticlesContext);
     const selectedArticle = getArticle(articleId);
 
     const onDelete = () => {

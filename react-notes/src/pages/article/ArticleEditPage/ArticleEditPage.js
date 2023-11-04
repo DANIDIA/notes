@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ArticleEditForm } from '../components';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchArticles, getArticle, sendArticles } from '../helpers';
+import { ArticlesContext } from '../context';
 
 export const ArticleEditPage = () => {
     const { articleId } = useParams();
     const navigate = useNavigate();
+    const { getArticle, sendArticles, fetchArticles } =
+        useContext(ArticlesContext);
     const article = getArticle(articleId);
 
     const updateArticle = ({ title, lessonDate, content }) => {

@@ -1,23 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Sidebar.module.css';
 import { ArticleLink } from './components';
-import { fetchArticles } from '../../../../pages/article/helpers';
+import { ArticlesContext } from '../../../../pages/article/context';
 
 export const Sidebar = (props) => {
-    const [articles, setArticles] = useState([]);
-
-    useEffect(() => {
-        let _articles = fetchArticles();
-        console.log(_articles);
-
-        setArticles([
-            ..._articles.sort(
-                (a, b) => new Date(a.lessonDate) - new Date(b.lessonDate),
-            ),
-        ]);
-    }, []);
+    const { articles } = useContext(ArticlesContext);
 
     return (
         <div {...props} className={styles.navbar}>
