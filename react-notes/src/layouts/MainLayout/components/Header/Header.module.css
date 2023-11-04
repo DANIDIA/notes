@@ -32,7 +32,7 @@
     display: flex;
 }
 
-.inputLable, .exportBtn{
+.inputLabel, .exportBtn{
     display: flex;
     align-items: center;
     height: 100%;
@@ -45,11 +45,11 @@
     font-weight: lighter;
 }
 
-.inputLable:hover, .exportBtn:hover{
+.inputLabel:hover, .exportBtn:hover{
     background-color: var(--non-accent);
 }
 
-.inputLable{
+.inputLabel{
     font-size: 15px;
 }
 

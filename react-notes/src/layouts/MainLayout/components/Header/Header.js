@@ -1,18 +1,41 @@
-import { Form, Link, useSubmit } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styles from './Header.module.css';
+import { useContext } from 'react';
+import { ArticlesContext } from '../../../../pages/article/context';
 
 export const Header = () => {
-    const submit = useSubmit();
+    const { sendArticles } = useContext(ArticlesContext);
 
-    const handleImportFormChange = async (event) => {
-        const form = event.currentTarget;
-        const fileText = await form.import.files[0].text();
-        const formData = new FormData();
-        formData.append('intent', 'import');
-        formData.append('fileText', fileText);
+    // Export articles from localstorage to json file
+    const handleExport = () => {
+        const articles = JSON.parse(localStorage.getItem('articles'));
+        const json = JSON.stringify(articles);
+        const element = document.createElement('a');
+        element.setAttribute(
+            'href',
+            'data:text/plain;charset=utf-8,' + encodeURIComponent(json),
+        );
+        element.setAttribute('download', `articles-${Date.now()}.json`);
+        element.style.display = 'none';
+        element.click();
+    };
 
-        submit(formData, { method: 'post' });
+    // Import articles from json file to localstorage
+    const handleImport = () => {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.click();
+        input.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const text = e.target.result;
+                const articles = JSON.parse(text);
+                sendArticles(articles);
+            };
+            reader.readAsText(file);
+        });
     };
 
     return (
@@ -21,33 +44,19 @@ export const Header = () => {
                 HOME
             </Link>
 
-            <Form
-                className={styles.exportImportButtons}
-                onChange={handleImportFormChange}
-                method="post"
-            >
-                <button
-                    className={styles.exportBtn}
-                    name="intent"
-                    value="export"
-                    type="submit"
-                >
+            <div className={styles.exportImportButtons}>
+                <button className={styles.exportBtn} onClick={handleExport}>
                     <span className={styles.boldText}>Export</span>
                     &nbsp;articles
                 </button>
 
                 <div className={styles.verticalLine} />
 
-                <label className={styles.inputLable}>
+                <button className={styles.inputLabel} onClick={handleImport}>
                     <span className={styles.boldText}>Import</span>
                     &nbsp;articles
-                    <input
-                        className={styles.fileInput}
-                        name="import"
-                        type="file"
-                    />
-                </label>
-            </Form>
+                </button>
+            </div>
         </header>
     );
 };

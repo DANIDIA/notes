@@ -23,4 +23,7 @@ export const router = createBrowserRouter(
             </Route>
         </Route>,
     ),
+    {
+        basename: process.env.NODE_ENV === 'development' ? '/' : '/notes',
+    },
 );
