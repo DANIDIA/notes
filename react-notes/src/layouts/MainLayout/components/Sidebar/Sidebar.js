@@ -10,6 +10,7 @@ export const Sidebar = (props) => {
 
     useEffect(() => {
         let _articles = fetchArticles();
+        console.log(_articles);
 
         setArticles([
             ..._articles.sort(

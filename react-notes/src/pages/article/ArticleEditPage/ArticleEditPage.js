@@ -12,7 +12,7 @@ export const ArticleEditPage = () => {
     const updateArticle = ({ title, lessonDate, content }) => {
         const articles = fetchArticles();
         const index = articles.findIndex((article) => article.id === articleId);
-        articles[index] = { title, lessonDate, content, articleId };
+        articles[index] = { title, lessonDate, content, id: articleId };
         sendArticles(articles);
         navigate('/article/' + articleId);
     };
