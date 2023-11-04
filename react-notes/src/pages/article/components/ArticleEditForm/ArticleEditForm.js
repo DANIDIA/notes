@@ -1,7 +1,7 @@
-import { Form, redirect, useLoaderData } from 'react-router-dom';
+import { Form, redirect } from 'react-router-dom';
 import { useState } from 'react';
 
-import { getArticle, updateArticle } from '../../articles';
+import { getArticle, updateArticle } from '../../ArticlePage/articles';
 import { Button } from '../../../../components';
 
 import styles from './ArticleEditForm.module.css';
@@ -19,12 +19,14 @@ export async function articleEditFormAction({ params, request }) {
     return redirect(`/article/${id}`);
 }
 
-export function ArticleEditForm() {
-    const article = useLoaderData();
-
-    const [title, setTitle] = useState(article.title);
-    const [content, setContent] = useState(article.content);
-    const [lessonDate, setLessonDate] = useState(article.lessonDate);
+export function ArticleEditForm({
+    title: _title = '',
+    content: _content = '',
+    lessonDate: _lessonDate = '',
+}) {
+    const [title, setTitle] = useState(_title);
+    const [content, setContent] = useState(_content);
+    const [lessonDate, setLessonDate] = useState(_lessonDate);
 
     return (
         <Form method="post" id="article-creation-form" className={styles.form}>

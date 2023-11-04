@@ -1,8 +1,8 @@
 import { Form, Outlet, useLoaderData, useOutlet } from 'react-router-dom';
 
 import { getArticle } from './articles';
-import { Button } from '../../components';
-import { handlerMatch } from '../../router/handlerMatch';
+import { Button } from '../../../components';
+import { handlerMatch } from '../../../router/handlerMatch';
 
 import { handleAction } from './ArticleView.handleAction';
 import styles from './ArticleView.module.css';

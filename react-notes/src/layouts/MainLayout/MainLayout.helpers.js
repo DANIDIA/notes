@@ -1,4 +1,4 @@
-import { getArticles } from '../../pages/ArticlePage/articles';
+import { getArticles } from '../../pages/article/ArticlePage/articles';
 import { handlerMatch } from '../../router/handlerMatch';
 import { handleAction } from './MainLayout.handleAction';
 

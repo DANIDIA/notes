@@ -1,5 +1,5 @@
 import { v1 } from 'uuid';
-import { ARTICLES_LOCAL_STORAGE_KEY } from '../../layouts';
+import { ARTICLES_LOCAL_STORAGE_KEY } from '../../../layouts';
 
 function importArticles() {
     const localStorageObject = localStorage.getItem(ARTICLES_LOCAL_STORAGE_KEY);

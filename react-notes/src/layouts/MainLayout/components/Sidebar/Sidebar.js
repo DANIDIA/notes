@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Form, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styles from './Sidebar.module.css';
 import { ArticleLink } from './components';
 
 export const Sidebar = (props) => {
-    const _articles = useLoaderData();
+    const _articles = [];
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
@@ -14,20 +14,13 @@ export const Sidebar = (props) => {
                 (a, b) => new Date(a.lessonDate) - new Date(b.lessonDate),
             ),
         ]);
-    }, [_articles]);
+    }, []);
 
     return (
         <div {...props} className={styles.navbar}>
-            <Form method="post">
-                <button
-                    type="submit"
-                    name="intent"
-                    value="createEmptyArticle"
-                    className={styles.addBtn}
-                >
-                    Add article
-                </button>
-            </Form>
+            <Link to="article/create" className={styles.addBtn}>
+                Add article
+            </Link>
 
             <h3 className={styles.title}>Articles: </h3>
 
