@@ -1,13 +1,8 @@
-import {
-    Form,
-    Outlet,
-    useLoaderData,
-    useOutlet,
-} from 'react-router-dom';
+import { Form, Outlet, useLoaderData, useOutlet } from 'react-router-dom';
 
-import { getArticle } from '../../../../articles';
-import { Button } from '../../../../components/Button';
-import { handlerMatch } from '../../../../handlerMatch';
+import { getArticle } from '../../articles';
+import { Button } from '../../components/Button';
+import { handlerMatch } from '../../handlerMatch';
 
 import { handleAction } from './ArticleView.handleAction';
 import styles from './ArticleView.module.css';

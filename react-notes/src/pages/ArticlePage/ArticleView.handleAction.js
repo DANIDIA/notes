@@ -1,5 +1,5 @@
 import { redirect } from 'react-router-dom';
-import { deleteArticle } from '../../../../articles';
+import { deleteArticle } from '../../articles';
 
 export const handleAction = {
     delete: function ({ params, request }) {

@@ -1,4 +1,9 @@
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import {
+    createBrowserRouter,
+    createRoutesFromElements,
+    Route,
+    RouterProvider,
+} from 'react-router-dom';
 
 import HomePage, {
     articleAction,
@@ -7,11 +12,11 @@ import HomePage, {
     articleEditFormLoader,
     articleLoader,
     ArticleView,
-    homePageAction,
-    homePageLoader
-} from './pages/HomePage';
+    mainLayoutAction,
+    mainLayoutLoader,
+} from './layouts/MainLayout';
 
-import ErrorPage from './ErrorPage';
+import ErrorPage from './pages/ErrorPage';
 import './reset.css';
 import './style.css';
 
@@ -21,8 +26,8 @@ const router = createBrowserRouter(
             path="/"
             element={<HomePage />}
             errorElement={<ErrorPage />}
-            loader={homePageLoader}
-            action={homePageAction}
+            loader={mainLayoutLoader}
+            action={mainLayoutAction}
         >
             <Route
                 path="article/:articleId"
@@ -37,8 +42,8 @@ const router = createBrowserRouter(
                     action={articleEditFormAction}
                 />
             </Route>
-        </Route>
-    )
+        </Route>,
+    ),
 );
 
 const App = () => <RouterProvider router={router} />;

@@ -1,14 +1,12 @@
 import { v1 } from 'uuid';
-import { ARTICLES_LOCAL_STORAGE_KEY } from './pages/HomePage';
+import { ARTICLES_LOCAL_STORAGE_KEY } from './layouts/MainLayout';
 
 function importArticles() {
-    const localStorageObject = localStorage.getItem(ARTICLES_LOCAL_STORAGE_KEY)
+    const localStorageObject = localStorage.getItem(ARTICLES_LOCAL_STORAGE_KEY);
     let articles = [];
 
     if (!!localStorageObject) {
-        articles = Array.from(
-            JSON.parse(localStorageObject),
-        );
+        articles = Array.from(JSON.parse(localStorageObject));
     }
 
     return articles;

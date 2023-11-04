@@ -1,32 +1,33 @@
+import { Form, redirect, useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
-import { Form } from 'react-router-dom';
 
-import { Button } from '../Button';
+import { getArticle, updateArticle } from '../../../../articles';
+import { Button } from '../../../../components/Button';
 
-import styles from './ArticleForm.module.css';
+import styles from './ArticleEditForm.module.css';
 
-export const ArticleForm = ({ articleData, intentType, buttonText }) => {
-    articleData = articleData || { title: '', lessonDate: '', content: '' };
+export function articleEditFormLoader({ params }) {
+    return getArticle(params.articleId);
+}
 
-    const [title, setTitle] = useState(articleData.title);
-    const [content, setContent] = useState(articleData.content);
-    const [lessonDate, setLessonDate] = useState(articleData.lessonDate);
+export async function articleEditFormAction({ params, request }) {
+    const formData = await request.formData();
+    const articleData = Object.fromEntries(formData);
+    const id = params.articleId;
 
-    const handleClearSubmit = (e) => {
-        if (!title.trim() || !content.trim() || !lessonDate) e.preventDefault();
+    updateArticle(id, articleData);
+    return redirect(`/article/${id}`);
+}
 
-        setTitle(articleData.title);
-        setContent(articleData.content);
-        setLessonDate(articleData.lessonDate);
-    };
+export function ArticleEditForm() {
+    const article = useLoaderData();
+
+    const [title, setTitle] = useState(article.title);
+    const [content, setContent] = useState(article.content);
+    const [lessonDate, setLessonDate] = useState(article.lessonDate);
 
     return (
-        <Form
-            method="post"
-            id="article-creation-form"
-            className={styles.form}
-            onSubmit={handleClearSubmit}
-        >
+        <Form method="post" id="article-creation-form" className={styles.form}>
             <div className={styles.titleDateContainer}>
                 <input
                     className={styles.title}
@@ -55,12 +56,12 @@ export const ArticleForm = ({ articleData, intentType, buttonText }) => {
 
             <Button
                 name="intent"
-                value={intentType}
+                value="edit"
                 style={{ marginLeft: 'auto' }}
                 type="submit"
             >
-                {buttonText}
+                Save changes
             </Button>
         </Form>
     );
-};
+}
