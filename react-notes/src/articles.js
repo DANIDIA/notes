@@ -2,10 +2,16 @@ import { v1 } from 'uuid';
 import { ARTICLES_LOCAL_STORAGE_KEY } from './pages/HomePage';
 
 function importArticles() {
-    const articles = Array.from(
-        JSON.parse(localStorage.getItem(ARTICLES_LOCAL_STORAGE_KEY)),
-    );
-    return articles || [];
+    const localStorageObject = localStorage.getItem(ARTICLES_LOCAL_STORAGE_KEY)
+    let articles = [];
+
+    if (!!localStorageObject) {
+        articles = Array.from(
+            JSON.parse(localStorageObject),
+        );
+    }
+
+    return articles;
 }
 
 function exportArticles(articles) {
@@ -29,8 +35,7 @@ export function createArticle({ title, lessonDate, content }) {
 }
 
 export function getArticles() {
-    const articles = importArticles();
-    return articles;
+    return importArticles();
 }
 
 export function getArticle(id) {

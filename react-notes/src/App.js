@@ -1,19 +1,14 @@
-import {
-    createBrowserRouter,
-    createRoutesFromElements,
-    Route,
-    RouterProvider,
-} from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 
 import HomePage, {
-    homePageAction,
     articleAction,
-    ArticleView,
-    articleLoader,
-    homePageLoader,
     ArticleEditForm,
-    articleEditFormLoader,
     articleEditFormAction,
+    articleEditFormLoader,
+    articleLoader,
+    ArticleView,
+    homePageAction,
+    homePageLoader
 } from './pages/HomePage';
 
 import ErrorPage from './ErrorPage';
@@ -24,14 +19,14 @@ const router = createBrowserRouter(
     createRoutesFromElements(
         <Route
             path="/"
-            element=<HomePage />
-            errorElement=<ErrorPage />
+            element={<HomePage />}
+            errorElement={<ErrorPage />}
             loader={homePageLoader}
             action={homePageAction}
         >
             <Route
                 path="article/:articleId"
-                element=<ArticleView />
+                element={<ArticleView />}
                 loader={articleLoader}
                 action={articleAction}
             >
@@ -40,10 +35,10 @@ const router = createBrowserRouter(
                     element={<ArticleEditForm />}
                     loader={articleEditFormLoader}
                     action={articleEditFormAction}
-                ></Route>
+                />
             </Route>
-        </Route>,
-    ),
+        </Route>
+    )
 );
 
 const App = () => <RouterProvider router={router} />;

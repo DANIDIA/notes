@@ -1,4 +1,4 @@
-import { Form, Link, useLoaderData } from 'react-router-dom';
+import { Form, useLoaderData } from 'react-router-dom';
 
 import styles from './Navbar.module.css';
 import { ArticleLink } from './components';
