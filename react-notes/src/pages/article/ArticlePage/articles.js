@@ -1,20 +1,6 @@
 import { v1 } from 'uuid';
 import { ARTICLES_LOCAL_STORAGE_KEY } from '../../../layouts';
-
-function importArticles() {
-    const localStorageObject = localStorage.getItem(ARTICLES_LOCAL_STORAGE_KEY);
-    let articles = [];
-
-    if (!!localStorageObject) {
-        articles = Array.from(JSON.parse(localStorageObject));
-    }
-
-    return articles;
-}
-
-function exportArticles(articles) {
-    loadArticlesFromJSON(JSON.stringify(articles));
-}
+import { exportArticles, importArticles } from '../helpers';
 
 export function loadArticlesFromJSON(json) {
     localStorage.setItem(ARTICLES_LOCAL_STORAGE_KEY, json);

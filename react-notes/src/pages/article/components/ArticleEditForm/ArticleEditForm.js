@@ -1,4 +1,4 @@
-import { Form, redirect } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import { useState } from 'react';
 
 import { getArticle, updateArticle } from '../../ArticlePage/articles';
@@ -23,13 +23,18 @@ export function ArticleEditForm({
     title: _title = '',
     content: _content = '',
     lessonDate: _lessonDate = '',
+    onSave,
 }) {
     const [title, setTitle] = useState(_title);
     const [content, setContent] = useState(_content);
     const [lessonDate, setLessonDate] = useState(_lessonDate);
 
+    const handleSaveButtonClick = () => {
+        onSave({ title, content, lessonDate });
+    };
+
     return (
-        <Form method="post" id="article-creation-form" className={styles.form}>
+        <div className={styles.form}>
             <div className={styles.titleDateContainer}>
                 <input
                     className={styles.title}
@@ -57,13 +62,11 @@ export function ArticleEditForm({
             />
 
             <Button
-                name="intent"
-                value="edit"
                 style={{ marginLeft: 'auto' }}
-                type="submit"
+                onClick={handleSaveButtonClick}
             >
                 Save changes
             </Button>
-        </Form>
+        </div>
     );
 }
