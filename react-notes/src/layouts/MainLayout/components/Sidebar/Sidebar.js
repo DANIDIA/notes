@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 
 import styles from './Sidebar.module.css';
 import { ArticleLink } from './components';
+import { importArticles } from '../../../../pages/article/helpers';
 
 export const Sidebar = (props) => {
-    const _articles = [];
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
+        let _articles = importArticles();
+
         setArticles([
             ..._articles.sort(
                 (a, b) => new Date(a.lessonDate) - new Date(b.lessonDate),
