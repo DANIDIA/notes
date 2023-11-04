@@ -1,7 +1,6 @@
 import { ARTICLES_LOCAL_STORAGE_KEY } from '../../layouts';
-import { loadArticlesFromJSON } from './ArticlePage/articles';
 
-export const importArticles = () => {
+export const fetchArticles = () => {
     const localStorageObject = localStorage.getItem(ARTICLES_LOCAL_STORAGE_KEY);
     let articles = [];
 
@@ -12,6 +11,6 @@ export const importArticles = () => {
     return articles;
 };
 
-export const exportArticles = (articles) => {
-    loadArticlesFromJSON(JSON.stringify(articles));
+export const sendArticles = (articles) => {
+    localStorage.setItem(ARTICLES_LOCAL_STORAGE_KEY, JSON.stringify(articles));
 };

@@ -1,2 +1,2 @@
-export * from './ArticlePage';
+export * from './ArticleViewPage';
 export * from './ArticleCreatePage';

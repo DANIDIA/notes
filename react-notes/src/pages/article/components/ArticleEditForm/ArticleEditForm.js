@@ -1,7 +1,10 @@
 import { redirect } from 'react-router-dom';
 import { useState } from 'react';
 
-import { getArticle, updateArticle } from '../../ArticlePage/articles';
+import {
+    getArticle,
+    updateArticle,
+} from '../../ArticleViewPage/ArticleViewPage.helpers';
 import { Button } from '../../../../components';
 
 import styles from './ArticleEditForm.module.css';

@@ -4,7 +4,12 @@ import {
     Route,
 } from 'react-router-dom';
 import { MainLayout } from '../layouts';
-import { ArticleCreatePage, ArticleView, ErrorPage, HomePage } from '../pages';
+import {
+    ArticleCreatePage,
+    ArticleViewPage,
+    ErrorPage,
+    HomePage,
+} from '../pages';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -12,7 +17,7 @@ export const router = createBrowserRouter(
             <Route path="/" element={<HomePage />} />
             <Route path="article">
                 <Route path="create" element={<ArticleCreatePage />} />
-                <Route path=":articleId" element={<ArticleView />} />
+                <Route path=":articleId" element={<ArticleViewPage />} />
             </Route>
         </Route>,
     ),

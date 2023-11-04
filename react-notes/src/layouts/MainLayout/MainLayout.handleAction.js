@@ -3,7 +3,7 @@ import {
     createArticle,
     getArticlesInJSON,
     loadArticlesFromJSON,
-} from '../../pages/article/ArticlePage/articles';
+} from '../../pages/article/ArticleViewPage/ArticleViewPage.helpers';
 
 export const handleAction = {
     createEmptyArticle: async function () {

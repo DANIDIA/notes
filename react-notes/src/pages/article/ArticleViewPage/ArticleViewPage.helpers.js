@@ -1,6 +1,6 @@
 import { v1 } from 'uuid';
 import { ARTICLES_LOCAL_STORAGE_KEY } from '../../../layouts';
-import { exportArticles, importArticles } from '../helpers';
+import { sendArticles, fetchArticles } from '../helpers';
 
 export function loadArticlesFromJSON(json) {
     localStorage.setItem(ARTICLES_LOCAL_STORAGE_KEY, json);
@@ -11,29 +11,24 @@ export function getArticlesInJSON() {
 }
 
 export function createArticle({ title, lessonDate, content }) {
-    const articles = importArticles();
+    const articles = fetchArticles();
     const id = v1(Date.now());
     articles.push({ title, lessonDate, content, id });
-    exportArticles(articles);
+    sendArticles(articles);
     return id;
 }
 
 export function getArticles() {
-    return importArticles();
+    return fetchArticles();
 }
 
 export function getArticle(id) {
-    return importArticles().find((article) => article.id === id);
-}
-
-export function deleteArticle(id) {
-    const articles = importArticles();
-    exportArticles(articles.filter((article) => article.id !== id));
+    return fetchArticles().find((article) => article.id === id);
 }
 
 export function updateArticle(id, { title, lessonDate, content }) {
-    const articles = importArticles();
+    const articles = fetchArticles();
     const index = articles.findIndex((article) => article.id === id);
     articles[index] = { title, lessonDate, content, id };
-    exportArticles(articles);
+    sendArticles(articles);
 }

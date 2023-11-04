@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 import styles from './Sidebar.module.css';
 import { ArticleLink } from './components';
-import { importArticles } from '../../../../pages/article/helpers';
+import { fetchArticles } from '../../../../pages/article/helpers';
 
 export const Sidebar = (props) => {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
-        let _articles = importArticles();
+        let _articles = fetchArticles();
 
         setArticles([
             ..._articles.sort(
