@@ -1,26 +1,8 @@
-import { redirect } from 'react-router-dom';
 import { useState } from 'react';
 
-import {
-    getArticle,
-    updateArticle,
-} from '../../ArticleViewPage/ArticleViewPage.helpers';
 import { Button } from '../../../../components';
 
 import styles from './ArticleEditForm.module.css';
-
-export function articleEditFormLoader({ params }) {
-    return getArticle(params.articleId);
-}
-
-export async function articleEditFormAction({ params, request }) {
-    const formData = await request.formData();
-    const articleData = Object.fromEntries(formData);
-    const id = params.articleId;
-
-    updateArticle(id, articleData);
-    return redirect(`/article/${id}`);
-}
 
 export function ArticleEditForm({
     title: _title = '',

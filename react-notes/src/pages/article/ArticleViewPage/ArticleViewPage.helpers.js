@@ -25,10 +25,3 @@ export function getArticles() {
 export function getArticle(id) {
     return fetchArticles().find((article) => article.id === id);
 }
-
-export function updateArticle(id, { title, lessonDate, content }) {
-    const articles = fetchArticles();
-    const index = articles.findIndex((article) => article.id === id);
-    articles[index] = { title, lessonDate, content, id };
-    sendArticles(articles);
-}

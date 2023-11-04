@@ -17,11 +17,17 @@ export const ArticleViewPage = () => {
         navigate('/');
     };
 
+    const onEdit = () => {
+        navigate(`/article/${articleId}/edit`);
+    };
+
     return (
         <div>
             <div>
                 <div className={styles.articleForm}>
-                    <Button className={styles.firstButton}>Edit</Button>
+                    <Button onClick={onEdit} className={styles.firstButton}>
+                        Edit
+                    </Button>
 
                     <Button onClick={onDelete}>Delete</Button>
                 </div>

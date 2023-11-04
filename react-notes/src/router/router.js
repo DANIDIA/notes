@@ -6,6 +6,7 @@ import {
 import { MainLayout } from '../layouts';
 import {
     ArticleCreatePage,
+    ArticleEditPage,
     ArticleViewPage,
     ErrorPage,
     HomePage,
@@ -18,6 +19,7 @@ export const router = createBrowserRouter(
             <Route path="article">
                 <Route path="create" element={<ArticleCreatePage />} />
                 <Route path=":articleId" element={<ArticleViewPage />} />
+                <Route path=":articleId/edit" element={<ArticleEditPage />} />
             </Route>
         </Route>,
     ),
