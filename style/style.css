@@ -1,4 +1,4 @@
-@import url("reset.css");
+
 @import url("navbar.css");
 @import url("header.css");
 
@@ -14,7 +14,7 @@
 body{
     background-color: var(--bg-color);
     color: var(--normal-text-color);
-    font-family: 'Roboto';
+    font-family: 'Roboto', serif;
     overflow: hidden;
 }
 

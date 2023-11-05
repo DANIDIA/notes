@@ -1,38 +1,18 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import { Button } from '../../../components';
 import styles from './ArticleViewPage.module.css';
 import { useContext } from 'react';
 import { ArticlesContext } from '../context';
 
 export const ArticleViewPage = () => {
     const { articleId } = useParams();
-    const navigate = useNavigate();
-    const { getArticle, sendArticles, fetchArticles } =
-        useContext(ArticlesContext);
+    const { getArticle } = useContext(ArticlesContext);
     const selectedArticle = getArticle(articleId);
-
-    const onDelete = () => {
-        const articles = fetchArticles();
-        sendArticles(articles.filter((article) => article.id !== articleId));
-
-        navigate('/');
-    };
-
-    const onEdit = () => {
-        navigate(`/article/${articleId}/edit`);
-    };
 
     return (
         <div>
             <div>
-                <div className={styles.articleForm}>
-                    <Button onClick={onEdit} className={styles.firstButton}>
-                        Edit
-                    </Button>
-
-                    <Button onClick={onDelete}>Delete</Button>
-                </div>
+                <div className={styles.articleForm}></div>
             </div>
 
             <h1 className={styles.title}>{selectedArticle.title}</h1>
