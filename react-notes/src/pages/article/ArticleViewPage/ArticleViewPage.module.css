@@ -1,0 +1,11 @@
+.title{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.lessonDate{
+    font-size: 14px;
+    margin-bottom: 50px;
+    color: var(--non-accent);
+    display: block;
+}
