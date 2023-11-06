@@ -1,11 +1,11 @@
-.navbar{
+.sidebar{
     width: var(--nav-bar-width);
     background-color: var(--nav-bar-color);
     border-right: 1px solid #505357;
     display: flex;
-    -webkit-box-shadow: 5px 0px 24px -21px rgba(0, 0, 0, 1);
-    -moz-box-shadow: 5px 0px 24px -21px rgba(0, 0, 0, 1);
-    box-shadow: 5px 0px 24px -21px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 5px 0 24px -21px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 5px 0 24px -21px rgba(0, 0, 0, 1);
+    box-shadow: 5px 0 24px -21px rgba(0, 0, 0, 1);
     overflow: hidden;
     justify-content: space-between;
 }

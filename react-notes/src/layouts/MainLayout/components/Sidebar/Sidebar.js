@@ -10,7 +10,7 @@ export const Sidebar = (props) => {
     const { articles } = useContext(ArticlesContext);
 
     return (
-        <div {...props} className={styles.navbar}>
+        <div {...props} className={styles.sidebar}>
             <Link to="article/create" className={styles.addBtn}>
                 Add article
             </Link>
