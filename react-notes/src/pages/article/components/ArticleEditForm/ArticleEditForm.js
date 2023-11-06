@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button } from '../../../../components';
 
@@ -13,6 +13,12 @@ export function ArticleEditForm({
     const [title, setTitle] = useState(_title);
     const [content, setContent] = useState(_content);
     const [lessonDate, setLessonDate] = useState(_lessonDate);
+
+    useEffect(() => {
+        setTitle(_title);
+        setContent(_content);
+        setLessonDate(_lessonDate);
+    }, [_title, _content, _lessonDate]);
 
     const handleSaveButtonClick = () => {
         onSave({ title, content, lessonDate });
