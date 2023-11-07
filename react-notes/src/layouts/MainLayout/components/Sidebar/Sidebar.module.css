@@ -5,7 +5,7 @@
     -webkit-box-shadow: 5px 0 24px -21px rgba(0, 0, 0, 1);
     -moz-box-shadow: 5px 0 24px -21px rgba(0, 0, 0, 1);
     box-shadow: 5px 0 24px -21px rgba(0, 0, 0, 1);
-    overflow: hidden;
+    overflow: scroll;
     justify-content: space-between;
     position: sticky;
     position: -webkit-sticky;
