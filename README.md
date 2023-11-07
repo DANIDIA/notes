@@ -62,6 +62,7 @@ https://roadmap.sh/
 
 - [ ] Entity Framework
 - [ ] Fluent Validation (https://docs.fluentvalidation.net/en/latest/)
+- [ ] Fast Endpoints (https://fast-endpoints.com/)
 
 ### Advanced topics:
 - [ ] Authorization vs Authentication
