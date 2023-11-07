@@ -16,7 +16,7 @@
     background-color: var(--bg-color);
 }
 
-.container:hover .button svg{
+.container:hover button svg{
     opacity: 1;
 }
 
@@ -73,6 +73,18 @@
 .deleteIco:hover{
     fill: red;
     stroke: red;
+}
+
+.selected{
+    background-color: var(--bg-color);
+}
+
+.selected .title{
+    font-weight: bold;
+}
+
+.selected svg{
+    opacity: 1;
 }
 
 

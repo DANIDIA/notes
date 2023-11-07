@@ -12,6 +12,7 @@ export const ArticleLink = ({ articleData }) => {
     const { fetchArticles, sendArticles } = useContext(ArticlesContext);
     const { articleId: currentArticleId } = useParams();
     const articleURL = `/article/${articleData.id}`;
+    const isArticleOpened = articleData.id === currentArticleId;
 
     const onDelete = (e) => {
         const articles = fetchArticles();
@@ -19,7 +20,7 @@ export const ArticleLink = ({ articleData }) => {
             articles.filter((article) => article.id !== articleData.id),
         );
 
-        if (articleData.id === currentArticleId) navigate('/');
+        if (isArticleOpened) navigate('/');
         e.defaultPrevented = true;
     };
 
@@ -33,7 +34,11 @@ export const ArticleLink = ({ articleData }) => {
     };
 
     return (
-        <li className={styles.container}>
+        <li
+            className={classNames(styles.container, {
+                [styles.selected]: isArticleOpened,
+            })}
+        >
             <Link to={articleURL} onClick={linkOnClickHandle}>
                 <div>
                     <div
