@@ -61,6 +61,7 @@ https://roadmap.sh/
 ### C#
 
 - [ ] Entity Framework
+- [ ] Fluent Validation (https://docs.fluentvalidation.net/en/latest/)
 
 ### Advanced topics:
 - [ ] Authorization vs Authentication
