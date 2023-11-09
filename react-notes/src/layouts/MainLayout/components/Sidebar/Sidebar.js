@@ -17,7 +17,7 @@ export const Sidebar = (props) => {
 
             <h3
                 className={classNames(styles.title, {
-                    [styles.noArticles]: !articles.length,
+                    [styles.noArticles]: articles.length === 0,
                 })}
             >
                 {articles.length ? 'Articles:' : 'No articles'}
