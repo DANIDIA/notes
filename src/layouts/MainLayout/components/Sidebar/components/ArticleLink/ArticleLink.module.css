@@ -1,0 +1,92 @@
+.container{
+    transition: 200ms;
+    cursor: pointer;
+    list-style: none;
+}
+
+.container>a{
+    display: flex;
+    align-items: center;
+    padding: 20px 15px 20px 14px;
+    color: var(--normal-text-color);
+    justify-content: space-between;
+ }
+
+.container:hover{
+    background-color: var(--bg-color);
+}
+
+.container:hover button svg{
+    opacity: 1;
+}
+
+.title{
+    font-size: 14px;
+    line-height: 23px;
+}
+
+.untitled{
+    color: var(--non-accent);
+}
+
+.lessonDate{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    margin-top: 15px;
+    color: var(--non-accent);    
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.btnContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 70px;
+    align-self: flex-end;
+}
+
+.button{
+    --size: 27px;
+    background-color: transparent;
+    height: var(--size);
+    width: var(--size);
+}
+
+.editIco, .deleteIco{
+
+    fill: var(--non-accent);
+    stroke: var(--non-accent);
+    opacity: 0.2;
+    transition: 200ms;
+    padding: 0 5px;
+    height: inherit;
+    width: calc(var(--size) + 10px);
+}
+
+.editIco:hover{
+    fill: var(--normal-text-color);
+    stroke: var(--normal-text-color);
+}
+
+.deleteIco:hover{
+    fill: red;
+    stroke: red;
+}
+
+.selected{
+    background-color: var(--bg-color);
+}
+
+.selected .title{
+    font-weight: bold;
+}
+
+.selected svg{
+    opacity: 1;
+}
+
+
+
+
