@@ -1,9 +1,11 @@
 import { useContext } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { createConfirmation } from 'react-confirm';
 import classNames from 'classnames';
 import { IoIosCreate, IoMdTrash } from 'react-icons/io';
 
 import { ArticlesContext } from '../../../../../../pages/article/context';
+import { ConfirmWindow } from '../../../../../../popups';
 
 import styles from './ArticleLink.module.css';
 
@@ -13,14 +15,22 @@ export const ArticleLink = ({ articleData }) => {
     const { articleId: currentArticleId } = useParams();
     const articleURL = `/article/${articleData.id}`;
     const isArticleOpened = articleData.id === currentArticleId;
+    const confirm = createConfirmation(ConfirmWindow);
 
-    const onDelete = (e) => {
-        const articles = fetchArticles();
-        sendArticles(
-            articles.filter((article) => article.id !== articleData.id),
-        );
+    const onDelete = async (e) => {
+        const userAnswer = await confirm({
+            conformation: 'Are you sure to delete?',
+        });
 
-        if (isArticleOpened) navigate('/');
+        if (userAnswer) {
+            const articles = fetchArticles();
+            sendArticles(
+                articles.filter((article) => article.id !== articleData.id),
+            );
+
+            navigate('/');
+        }
+
         e.defaultPrevented = true;
     };
 
