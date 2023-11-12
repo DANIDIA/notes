@@ -19,7 +19,7 @@ export const ArticleLink = ({ articleData }) => {
 
     const onDelete = async (e) => {
         const userAnswer = await confirm({
-            conformation: 'Are you sure to delete?',
+            conformation: `Are you sure to delete '${articleData.title}'?`,
         });
 
         if (userAnswer) {
