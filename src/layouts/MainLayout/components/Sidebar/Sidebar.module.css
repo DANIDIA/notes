@@ -1,11 +1,15 @@
-.sidebar{
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: var(--bg-color);
+}
+
+.sidebar {
     width: var(--nav-bar-width);
     background-color: var(--nav-bar-color);
     border-right: 1px solid #505357;
     -webkit-box-shadow: 5px 0 24px -21px rgba(0, 0, 0, 1);
     -moz-box-shadow: 5px 0 24px -21px rgba(0, 0, 0, 1);
     box-shadow: 5px 0 24px -21px rgba(0, 0, 0, 1);
-    overflow: scroll;
+    overflow-y: scroll;
     justify-content: space-between;
     position: sticky;
     position: -webkit-sticky;
@@ -14,7 +18,7 @@
     align-self: flex-start
 }
 
-.addBtn{
+.addBtn {
     padding: 30px 0;
     width: 100%;
     border-bottom: 3px solid var(--bg-color);
@@ -27,33 +31,33 @@
     display: block;
 }
 
-.title{
+.title {
     font-size: 20px;
     margin-bottom: 20px;
     text-transform: uppercase;
     padding-left: 14px;
 }
 
-.noArticles{
+.noArticles {
     text-align: center;
     color: var(--non-accent);
 }
 
-.addBtn::before{
+.addBtn::before {
     content: '+';
     font-size: 17px;
     margin-right: 10px;
     transition: 200ms;
 }
 
-.addBtn:hover{
+.addBtn:hover {
     background-color: var(--bg-color);
     color: white;
-    
+
 }
 
-.addBtn:hover::before{
-    color: white;   
+.addBtn:hover::before {
+    color: white;
 }
 
 
