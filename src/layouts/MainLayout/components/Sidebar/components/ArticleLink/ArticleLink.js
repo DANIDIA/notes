@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import { IoIosCreate, IoMdTrash } from 'react-icons/io';
 
 import { ArticlesContext } from '../../../../../../pages/article/context';
-import { ConfirmWindow } from '../../../../../../popups';
 
 import styles from './ArticleLink.module.css';
+import { ConfirmDialog } from './Components';
 
 export const ArticleLink = ({ articleData }) => {
     const navigate = useNavigate();
@@ -15,11 +15,11 @@ export const ArticleLink = ({ articleData }) => {
     const { articleId: currentArticleId } = useParams();
     const articleURL = `/article/${articleData.id}`;
     const isArticleOpened = articleData.id === currentArticleId;
-    const confirm = createConfirmation(ConfirmWindow);
+    const confirm = createConfirmation(ConfirmDialog);
 
     const onDelete = async (e) => {
         const userAnswer = await confirm({
-            conformation: `Are you sure to delete '${articleData.title}'?`,
+            confirmDialogText: `Are you sure to delete '${articleData.title}'?`,
         });
 
         if (userAnswer) {

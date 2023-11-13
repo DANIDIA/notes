@@ -2,7 +2,7 @@
     display: none;
 }
 
-.windowContainer {
+.confirmDialogContainer {
     position: fixed;
     overflow: hidden;
     width: 100%;
@@ -13,7 +13,7 @@
     animation: 200ms 1 alternate appear;
 }
 
-.window {
+.confirmDialog {
     --width: 500px;
     --height: 150px;
 
@@ -34,7 +34,7 @@
     border-radius: 5px;
 }
 
-.text {
+.confirmDialogText {
     font-size: 18px;
 }
 
@@ -58,30 +58,12 @@
 }
 
 .btn:hover {
-    --shadowColor: white;
-    --shadowTextColor: white;
-    --borderColor: white;
+    -webkit-box-shadow: 0 0 3px -1px white;
+    -moz-box-shadow: 0 0 3px -1px white;
+    box-shadow: 0 0 3px -1px white;
+    text-shadow: 0 0 2px white;
 
-    -webkit-box-shadow: 0 0 3px -1px var(--shadowColor);
-    -moz-box-shadow: 0 0 3px -1px var(--shadowColor);
-    box-shadow: 0 0 3px -1px var(--shadowColor);
-    text-shadow: 0 0 2px var(--shadowTextColor);
-
-    border-color: var(--borderColor);
-}
-
-.deleteBtn {
-    color: #e11f1f;;
-    border-color: #e11f1f;
-}
-
-.deleteBtn:hover {
-    --shadowColor: red;
-    --shadowTextColor: red;
-    --borderColor: red;
-
-    background-color: var(--nav-bar-color);
-    color: red;
+    border-color: white;
 }
 
 @keyframes appear {
