@@ -11,7 +11,7 @@ import { ConfirmDialog } from './Components';
 
 export const ArticleLink = ({ articleData }) => {
     const navigate = useNavigate();
-    const { fetchArticles, sendArticles } = useContext(ArticlesContext);
+    const { removeArticle } = useContext(ArticlesContext);
     const { articleId: currentArticleId } = useParams();
     const articleURL = `/article/${articleData.id}`;
     const isArticleOpened = articleData.id === currentArticleId;
@@ -23,10 +23,7 @@ export const ArticleLink = ({ articleData }) => {
         });
 
         if (userAnswer) {
-            const articles = fetchArticles();
-            sendArticles(
-                articles.filter((article) => article.id !== articleData.id),
-            );
+            removeArticle(articleData.id);
 
             navigate('/');
         }

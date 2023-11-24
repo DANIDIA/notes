@@ -6,6 +6,7 @@ export const ArticlesContext = createContext({
     fetchArticles: () => [],
     sendArticles: (articles) => {},
     sendArticle: (artilce) => {},
+    removeArticle: (id) => {},
     getArticle: (id) => ({}),
 });
 
@@ -45,6 +46,10 @@ export const ArticlesContextProvider = ({ children }) => {
         return values[values.length - 1];
     };
 
+    const removeArticle = (id) => {
+        fetch(`${BACKEND_URL}/${id}`, { method: 'delete' });
+    };
+
     const getArticle = (id) =>
         fetchArticles().find((article) => article.id === id);
 
@@ -55,6 +60,7 @@ export const ArticlesContextProvider = ({ children }) => {
                 fetchArticles,
                 sendArticles,
                 sendArticle,
+                removeArticle,
                 getArticle,
             }}
         >
