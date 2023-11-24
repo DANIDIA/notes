@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { ARTICLES_LOCAL_STORAGE_KEY } from './consts';
+import { ARTICLES_LOCAL_STORAGE_KEY, BACKEND_URL } from './consts';
 
 export const ArticlesContext = createContext({
     articles: [],
@@ -12,20 +12,14 @@ export const ArticlesContextProvider = ({ children }) => {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
-        setArticles(fetchArticles());
+        const asyncSetArticles = async () => setArticles(await fetchArticles());
+        asyncSetArticles();
     }, []);
 
-    const fetchArticles = () => {
-        const localStorageObject = localStorage.getItem(
-            ARTICLES_LOCAL_STORAGE_KEY,
-        );
-        let articles = [];
+    const fetchArticles = async () => {
+        const response = await fetch(BACKEND_URL);
 
-        if (!!localStorageObject) {
-            articles = Array.from(JSON.parse(localStorageObject));
-        }
-
-        return articles;
+        return JSON.parse(await response.json());
     };
 
     const sendArticles = (articles) => {
