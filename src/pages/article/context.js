@@ -5,6 +5,7 @@ export const ArticlesContext = createContext({
     articles: [],
     fetchArticles: () => [],
     sendArticles: (articles) => {},
+    sendArticle: (artilce) => {},
     getArticle: (id) => ({}),
 });
 
@@ -30,6 +31,20 @@ export const ArticlesContextProvider = ({ children }) => {
         setArticles(articles);
     };
 
+    const sendArticle = async (article) => {
+        const response = await fetch(BACKEND_URL, {
+            method: 'post',
+            body: JSON.stringify(article),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const location = response.getHeader('location');
+        const values = location.split('/');
+        return values[values.length - 1];
+    };
+
     const getArticle = (id) =>
         fetchArticles().find((article) => article.id === id);
 
@@ -39,6 +54,7 @@ export const ArticlesContextProvider = ({ children }) => {
                 articles,
                 fetchArticles,
                 sendArticles,
+                sendArticle,
                 getArticle,
             }}
         >
