@@ -33,10 +33,10 @@ export const ArticlesContextProvider = ({ children }) => {
         setArticles(articles);
     };
 
-    const sendArticle = async (article) => {
+    const sendArticle = async (articleData) => {
         const response = await fetch(BACKEND_URL, {
             method: 'post',
-            body: JSON.stringify(article),
+            body: JSON.stringify(articleData),
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -44,11 +44,20 @@ export const ArticlesContextProvider = ({ children }) => {
 
         const location = response.getHeader('location');
         const values = location.split('/');
-        return values[values.length - 1];
+        const id = values[values.length - 1];
+
+        const _articles = articles;
+        _articles.push({ id, ...articleData });
+        setArticles(_articles);
+
+        return id;
     };
 
     const removeArticleRequest = (id) => {
         fetch(`${BACKEND_URL}/${id}`, { method: 'delete' });
+
+        const _articles = articles.filter((a) => a.id !== id);
+        setArticles(_articles);
     };
 
     const sendUpdatedArticle = (id, articleDate) => {
@@ -56,10 +65,14 @@ export const ArticlesContextProvider = ({ children }) => {
             method: 'put',
             body: JSON.stringify(articleDate),
         });
+
+        const _articles = articles;
+        const index = _articles.findIndex((a) => a.id === id);
+        _articles[index] = { id, ...articleDate };
+        setArticles(_articles);
     };
 
-    const getArticle = (id) =>
-        fetchArticles().find((article) => article.id === id);
+    const getArticle = (id) => articles.find((article) => article.id === id);
 
     return (
         <ArticlesContext.Provider
