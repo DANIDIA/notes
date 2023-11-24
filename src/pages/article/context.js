@@ -6,7 +6,8 @@ export const ArticlesContext = createContext({
     fetchArticles: () => [],
     sendArticles: (articles) => {},
     sendArticle: (artilce) => {},
-    removeArticle: (id) => {},
+    removeArticleRequest: (id) => {},
+    updateArticle: (id, articleData) => {},
     getArticle: (id) => ({}),
 });
 
@@ -46,8 +47,15 @@ export const ArticlesContextProvider = ({ children }) => {
         return values[values.length - 1];
     };
 
-    const removeArticle = (id) => {
+    const removeArticleRequest = (id) => {
         fetch(`${BACKEND_URL}/${id}`, { method: 'delete' });
+    };
+
+    const sendUpdatedArticle = (id, articleDate) => {
+        fetch(`${BACKEND_URL}/${id}`, {
+            method: 'put',
+            body: JSON.stringify(articleDate),
+        });
     };
 
     const getArticle = (id) =>
@@ -60,7 +68,8 @@ export const ArticlesContextProvider = ({ children }) => {
                 fetchArticles,
                 sendArticles,
                 sendArticle,
-                removeArticle,
+                removeArticleRequest,
+                updateArticle: sendUpdatedArticle,
                 getArticle,
             }}
         >
