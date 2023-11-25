@@ -1,0 +1,63 @@
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: var(--bg-color);
+}
+
+.sidebar {
+    width: var(--nav-bar-width);
+    background-color: var(--nav-bar-color);
+    border-right: 1px solid #505357;
+    -webkit-box-shadow: 5px 0 24px -21px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 5px 0 24px -21px rgba(0, 0, 0, 1);
+    box-shadow: 5px 0 24px -21px rgba(0, 0, 0, 1);
+    overflow-y: scroll;
+    justify-content: space-between;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    height: 100%;
+    align-self: flex-start
+}
+
+.addBtn {
+    padding: 30px 0;
+    width: 100%;
+    border-bottom: 3px solid var(--bg-color);
+    color: var(--normal-text-color);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+    transition: 200ms;
+    margin: 0 auto 40px auto;
+    display: block;
+}
+
+.title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    padding-left: 14px;
+}
+
+.noArticles {
+    text-align: center;
+    color: var(--non-accent);
+}
+
+.addBtn::before {
+    content: '+';
+    font-size: 17px;
+    margin-right: 10px;
+    transition: 200ms;
+}
+
+.addBtn:hover {
+    background-color: var(--bg-color);
+    color: white;
+
+}
+
+.addBtn:hover::before {
+    color: white;
+}
+
+
