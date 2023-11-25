@@ -8,18 +8,19 @@ export const ArticlesContext = createContext({
     removeArticleRequest: (id) => {},
     sendUpdatedArticle: (id, articleData) => {},
     getArticle: (id) => ({}),
+    areArticlesLoaded: false,
 });
 
 export const ArticlesContextProvider = ({ children }) => {
     const [articles, setArticles] = useState([]);
-    const [areArticlesLoad, setAreArticlesLoad] = useState(false);
+    const [areArticlesLoaded, setAreArticlesLoaded] = useState(false);
 
     useEffect(() => {
         (async () => {
             console.log('preload starts');
             const _articles = await fetchArticles();
             setArticles(_articles);
-        })().then(() => setAreArticlesLoad(true));
+        })().then(() => setAreArticlesLoaded(true));
     }, []);
 
     const fetchArticles = async () => {
@@ -90,7 +91,8 @@ export const ArticlesContextProvider = ({ children }) => {
         setArticles(_articles);
     };
 
-    const getArticle = (id) => articles.find((article) => article.id === id);
+    const getArticle = (id) =>
+        articles.find((article) => article.id === id) || null;
 
     return (
         <ArticlesContext.Provider
@@ -101,6 +103,7 @@ export const ArticlesContextProvider = ({ children }) => {
                 removeArticleRequest,
                 sendUpdatedArticle,
                 getArticle,
+                areArticlesLoaded,
             }}
         >
             {children}
