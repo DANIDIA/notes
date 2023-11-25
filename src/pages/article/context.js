@@ -4,10 +4,9 @@ import { BACKEND_URL } from './consts';
 export const ArticlesContext = createContext({
     articles: [],
     fetchArticles: () => [],
-    sendArticles: (articles) => {},
     sendArticle: (artilce) => {},
     removeArticleRequest: (id) => {},
-    updateArticle: (id, articleData) => {},
+    sendUpdatedArticle: (id, articleData) => {},
     getArticle: (id) => ({}),
 });
 
@@ -15,14 +14,30 @@ export const ArticlesContextProvider = ({ children }) => {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
-        const asyncSetArticles = async () => setArticles(await fetchArticles());
-        asyncSetArticles();
+        (async () => {
+            const _articles = await fetchArticles();
+            setArticles(_articles);
+        })();
     }, []);
 
     const fetchArticles = async () => {
-        const response = await fetch(BACKEND_URL);
+        const response = await fetch(BACKEND_URL, { method: 'get' });
+        const json = await response.json();
+        const _articles = [];
 
-        return JSON.parse(await response.json());
+        json.forEach((a) => {
+            const date = new Date(a.LessonDate);
+            const lessonDateString = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+
+            _articles.push({
+                id: a.Id,
+                title: a.Title,
+                lessonDate: lessonDateString,
+                content: a.Content,
+            });
+        });
+
+        return _articles;
     };
 
     const sendArticle = async (articleData) => {
@@ -34,9 +49,7 @@ export const ArticlesContextProvider = ({ children }) => {
             },
         });
 
-        const location = response.getHeader('location');
-        const values = location.split('/');
-        const id = values[values.length - 1];
+        const id = (await response.json()).Id;
 
         const _articles = articles;
         _articles.push({ id, ...articleData });
@@ -45,22 +58,35 @@ export const ArticlesContextProvider = ({ children }) => {
         return id;
     };
 
-    const removeArticleRequest = (id) => {
-        fetch(`${BACKEND_URL}/${id}`, { method: 'delete' });
+    const removeArticleRequest = async (id) => {
+        const response = await fetch(`${BACKEND_URL}/${id}`, {
+            method: 'delete',
+        });
+
+        if (!response.ok) return;
 
         const _articles = articles.filter((a) => a.id !== id);
         setArticles(_articles);
     };
 
-    const sendUpdatedArticle = (id, articleDate) => {
-        fetch(`${BACKEND_URL}/${id}`, {
+    const sendUpdatedArticle = async (id, articleData) => {
+        const requestBody = articleData;
+        requestBody.lessonDate = new Date(articleData.lessonDate).toJSON();
+        console.log(requestBody);
+
+        const response = await fetch(`${BACKEND_URL}/${id}`, {
             method: 'put',
-            body: JSON.stringify(articleDate),
+            body: JSON.stringify(requestBody),
+            headers: {
+                'Content-Type': 'application/json',
+            },
         });
+
+        if (!response.ok) return;
 
         const _articles = articles;
         const index = _articles.findIndex((a) => a.id === id);
-        _articles[index] = { id, ...articleDate };
+        _articles[index] = { id, ...articleData };
         setArticles(_articles);
     };
 
@@ -71,10 +97,9 @@ export const ArticlesContextProvider = ({ children }) => {
             value={{
                 articles,
                 fetchArticles,
-                sendArticles,
                 sendArticle,
                 removeArticleRequest,
-                updateArticle: sendUpdatedArticle,
+                sendUpdatedArticle,
                 getArticle,
             }}
         >
