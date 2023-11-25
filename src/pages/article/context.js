@@ -12,12 +12,14 @@ export const ArticlesContext = createContext({
 
 export const ArticlesContextProvider = ({ children }) => {
     const [articles, setArticles] = useState([]);
+    const [areArticlesLoad, setAreArticlesLoad] = useState(false);
 
     useEffect(() => {
         (async () => {
+            console.log('preload starts');
             const _articles = await fetchArticles();
             setArticles(_articles);
-        })();
+        })().then(() => setAreArticlesLoad(true));
     }, []);
 
     const fetchArticles = async () => {
@@ -51,8 +53,7 @@ export const ArticlesContextProvider = ({ children }) => {
 
         const id = (await response.json()).Id;
 
-        const _articles = articles;
-        _articles.push({ id, ...articleData });
+        const _articles = [...articles, { id, ...articleData }];
         setArticles(_articles);
 
         return id;
@@ -70,9 +71,8 @@ export const ArticlesContextProvider = ({ children }) => {
     };
 
     const sendUpdatedArticle = async (id, articleData) => {
-        const requestBody = articleData;
+        const requestBody = { ...articleData };
         requestBody.lessonDate = new Date(articleData.lessonDate).toJSON();
-        console.log(requestBody);
 
         const response = await fetch(`${BACKEND_URL}/${id}`, {
             method: 'put',
@@ -84,9 +84,9 @@ export const ArticlesContextProvider = ({ children }) => {
 
         if (!response.ok) return;
 
-        const _articles = articles;
-        const index = _articles.findIndex((a) => a.id === id);
-        _articles[index] = { id, ...articleData };
+        const _articles = articles.map((a) =>
+            a.id === id ? { id, ...articleData } : a,
+        );
         setArticles(_articles);
     };
 
