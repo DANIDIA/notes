@@ -4,7 +4,7 @@ import { BACKEND_URL } from './consts';
 export const ArticlesContext = createContext({
     articles: [],
     fetchArticles: () => [],
-    sendArticle: (artilce) => {},
+    sendArticle: (article) => {},
     removeArticleRequest: (id) => {},
     sendUpdatedArticle: (id, articleData) => {},
     getArticle: (id) => ({}),
