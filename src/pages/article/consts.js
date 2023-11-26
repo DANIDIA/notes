@@ -1,2 +1,1 @@
-export const ARTICLES_LOCAL_STORAGE_KEY = 'articles';
-export const BACKEND_URL = 'http://localhost:5229/api/Articles';
+export const BACKEND_URL = process.env.REACT_APP_BACKEND_URL_HOST + '/api/Articles';
