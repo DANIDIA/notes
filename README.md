@@ -13,6 +13,7 @@ Frontend of application is running on [GitHub pages](https://pages.github.com/)
 ## Backend API
 
 Written on C# & ASP.NET Core. Hosted on [Somee.com](https://somee.com/)
+Backend project - https://github.com/DANIDIA/notesBE
 
 # Getting Started with Create React App
 
