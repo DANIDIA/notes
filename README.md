@@ -1,6 +1,6 @@
 # Introduction
 
-This project shows an implantation of a notebook app that allows to create, edit and delete notes.
+This project shows an implementation of a notebook app that allows to create, edit and delete notes.
 
 ## Technologies
 
