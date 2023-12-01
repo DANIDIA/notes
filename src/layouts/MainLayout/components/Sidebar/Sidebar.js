@@ -7,7 +7,14 @@ import { ArticlesContext } from '../../../../pages/article/context';
 import classNames from 'classnames';
 
 export const Sidebar = (props) => {
-    const { articles } = useContext(ArticlesContext);
+    const { articles, articlesLoadingStatus } = useContext(ArticlesContext);
+    const sidebarTitle = articlesLoadingStatus.isLoading
+        ? 'loading articles...'
+        : articlesLoadingStatus.isOk
+          ? articles.length > 0
+              ? 'Articles: '
+              : 'No articles'
+          : 'Error';
 
     return (
         <div {...props} className={styles.sidebar}>
@@ -20,7 +27,7 @@ export const Sidebar = (props) => {
                     [styles.noArticles]: articles.length === 0,
                 })}
             >
-                {articles.length ? 'Articles:' : 'No articles'}
+                {sidebarTitle}
             </h3>
 
             <ul>
