@@ -6,10 +6,10 @@ import { ArticlesContext } from '../context';
 
 export const ArticleViewPage = () => {
     const { articleId } = useParams();
-    const { getArticle, areArticlesLoaded } = useContext(ArticlesContext);
+    const { getArticle, articlesLoadingStatus } = useContext(ArticlesContext);
     const selectedArticle = getArticle(articleId);
 
-    return areArticlesLoaded ? (
+    return !articlesLoadingStatus.isLoading && !articlesLoadingStatus.error ? (
         <div>
             <div>
                 <div className={styles.articleForm}></div>
@@ -21,6 +21,8 @@ export const ArticleViewPage = () => {
             </small>
             <p className={styles.content}>{selectedArticle.content}</p>
         </div>
+    ) : articlesLoadingStatus.isOk === false ? (
+        articlesLoadingStatus.error
     ) : (
         'content is loading...'
     );

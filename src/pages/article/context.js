@@ -8,23 +8,45 @@ export const ArticlesContext = createContext({
     removeArticleRequest: (id) => {},
     sendUpdatedArticle: (id, articleData) => {},
     getArticle: (id) => ({}),
-    areArticlesLoaded: false,
+    articlesLoadingStatus: {
+        isLoading: true,
+        isOk: null,
+        error: null,
+    },
 });
 
 export const ArticlesContextProvider = ({ children }) => {
     const [articles, setArticles] = useState([]);
-    const [areArticlesLoaded, setAreArticlesLoaded] = useState(false);
+    const [articlesLoadingStatus, setArticlesLoadingStatus] = useState({
+        isLoading: true,
+        isOk: null,
+        error: null,
+    });
 
     useEffect(() => {
-        (async () => {
-            console.log('preload starts');
-            const _articles = await fetchArticles();
-            setArticles(_articles);
-        })().then(() => setAreArticlesLoaded(true));
+        fetchArticles()
+            .then((_articles) => {
+                setArticles(_articles);
+                setArticlesLoadingStatus({
+                    isLoading: false,
+                    isOk: true,
+                    error: null,
+                });
+            })
+            .catch((reason) =>
+                setArticlesLoadingStatus({
+                    isLoading: false,
+                    isOk: false,
+                    error: reason,
+                }),
+            );
     }, []);
 
     const fetchArticles = async () => {
         const response = await fetch(BACKEND_URL, { method: 'get' });
+
+        if (!response.ok) return Promise.reject(response.status);
+
         const json = await response.json();
         const _articles = [];
 
@@ -103,7 +125,7 @@ export const ArticlesContextProvider = ({ children }) => {
                 removeArticleRequest,
                 sendUpdatedArticle,
                 getArticle,
-                areArticlesLoaded,
+                articlesLoadingStatus,
             }}
         >
             {children}
