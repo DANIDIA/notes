@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Sidebar.module.css';
@@ -7,14 +7,23 @@ import { ArticlesContext } from '../../../../pages/article/context';
 import classNames from 'classnames';
 
 export const Sidebar = (props) => {
-    const { articles, articlesLoadingStatus } = useContext(ArticlesContext);
-    const sidebarTitle = articlesLoadingStatus.isLoading
-        ? 'loading articles...'
-        : articlesLoadingStatus.isOk
-          ? articles.length > 0
-              ? 'Articles: '
-              : 'No articles'
-          : 'Error';
+    const { articles, articlesLoadingPromise } = useContext(ArticlesContext);
+    const [sidebarTitle, setSidebarTitle] = useState('Articles loading...');
+
+    useEffect(() => {
+        if (!articlesLoadingPromise) return;
+
+        articlesLoadingPromise
+            .then(() => {
+                articles.length > 0
+                    ? setSidebarTitle('Articles: ')
+                    : setSidebarTitle('No articles');
+            })
+            .catch((reason) => {
+                setSidebarTitle('Error');
+                alert(reason);
+            });
+    }, [articlesLoadingPromise, articles]);
 
     return (
         <div {...props} className={styles.sidebar}>
