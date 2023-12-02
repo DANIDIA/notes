@@ -74,6 +74,8 @@ export const ArticlesContextProvider = ({ children }) => {
             },
         });
 
+        if (!response.ok) return Promise.reject(response.status);
+
         const id = (await response.json()).Id;
 
         const _articles = [...articles, { id, ...articleData }];
@@ -87,7 +89,7 @@ export const ArticlesContextProvider = ({ children }) => {
             method: 'delete',
         });
 
-        if (!response.ok) return;
+        if (!response.ok) return Promise.reject(response.status);
 
         const _articles = articles.filter((a) => a.id !== id);
         setArticles(_articles);
@@ -105,7 +107,7 @@ export const ArticlesContextProvider = ({ children }) => {
             },
         });
 
-        if (!response.ok) return;
+        if (!response.ok) return Promise.reject(response.status);
 
         const _articles = articles.map((a) =>
             a.id === id ? { id, ...articleData } : a,

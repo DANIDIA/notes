@@ -22,11 +22,10 @@ export const ArticleLink = ({ articleData }) => {
             confirmDialogText: `Are you sure to delete '${articleData.title}'?`,
         });
 
-        if (userAnswer) {
-            removeArticleRequest(articleData.id);
-
-            navigate('/');
-        }
+        if (userAnswer)
+            removeArticleRequest(articleData.id)
+                .then(navigate('/'))
+                .catch((reason) => alert(reason));
 
         e.defaultPrevented = true;
     };

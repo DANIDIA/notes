@@ -10,8 +10,13 @@ export const ArticleEditPage = () => {
     const article = getArticle(articleId);
 
     const updateArticle = ({ title, lessonDate, content }) => {
-        sendUpdatedArticle(articleId, { title, lessonDate, content });
-        navigate('/article/' + articleId);
+        sendUpdatedArticle(articleId, {
+            title,
+            lessonDate,
+            content,
+        })
+            .then(() => navigate('/article/' + articleId))
+            .catch((reason) => alert(reason));
     };
 
     return <ArticleEditForm {...article} onSave={updateArticle} />;

@@ -7,10 +7,13 @@ export const ArticleCreatePage = () => {
     const navigate = useNavigate();
     const { sendArticle } = useContext(ArticlesContext);
 
-    const createArticle = async ({ title, lessonDate, content }) => {
-        const id = await sendArticle({ title, lessonDate, content });
-
-        navigate('/article/' + id);
+    const createArticle = ({ title, lessonDate, content }) => {
+        sendArticle({ title, lessonDate, content })
+            .then((id) => navigate('/article/' + id))
+            .catch((reason) => {
+                alert(reason);
+                navigate('/');
+            });
     };
 
     return <ArticleEditForm onSave={createArticle} />;
