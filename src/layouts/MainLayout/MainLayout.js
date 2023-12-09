@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { Header, Sidebar } from './components';
 import styles from './MainLayout.module.css';
 import { useEffect, useState } from 'react';
+import { LoadingIndicator } from '../../components/LoadingIndicator';
 
 export const MainLayout = () => {
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
@@ -24,7 +25,7 @@ export const MainLayout = () => {
 
             <div className={styles.content}>
                 <Sidebar style={{ height: windowHeight }} />
-
+                <LoadingIndicator />
                 <div className={styles.articleContainer}>
                     <Outlet />
                 </div>
