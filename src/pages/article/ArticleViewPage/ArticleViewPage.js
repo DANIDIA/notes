@@ -2,13 +2,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { ArticlesContext } from '../context';
 import styles from './ArticleViewPage.module.css';
+import { LoadingIndicator } from '../../../components/LoadingIndicator';
 
 export const ArticleViewPage = () => {
     const { articleId } = useParams();
     const { getArticle, articlesLoadingPromise } = useContext(ArticlesContext);
     const selectedArticle = getArticle(articleId);
     const navigate = useNavigate();
-    const [content, setContent] = useState('content is loading...');
+    const [content, setContent] = useState(
+        <LoadingIndicator
+            size={200}
+            color="#21252b"
+            className={styles.loadingIndicator}
+        />,
+    );
 
     useEffect(() => {
         if (!articlesLoadingPromise) return;

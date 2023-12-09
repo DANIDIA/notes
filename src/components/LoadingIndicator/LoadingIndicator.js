@@ -1,51 +1,72 @@
 import React, { useEffect, useRef } from 'react';
 
-export const LoadingIndicator = () => {
+export const LoadingIndicator = ({
+    size,
+    color = '#000000',
+    style,
+    className,
+}) => {
     const canvas = useRef();
     useEffect(() => {
-        if (!canvas.current) return;
         /** @type {CanvasRenderingContext2D} **/
         const ctx = canvas.current.getContext('2d');
 
-        const minValue = 30;
-        const maxValue = 150;
-        const width = 40;
-        const x = 20;
-        const y = 30;
-        const rectOffeset = 20;
-        const rectAmount = 6;
+        const segmentWidth = size * 0.25;
+        const x = size / 2;
+        const y = size / 2;
+        const maxRadius = size / 2 - segmentWidth / 2;
+        const minRadius = maxRadius * 0.6;
 
-        const rectSizes = [];
-        let curruentRectIndex = 0;
+        const segmentOffset = Math.PI / 180;
+        const segmentsAmount = 8;
+        const segmentLength = Math.PI / (segmentsAmount / 2);
 
-        for (let i = 0; i < rectAmount; i++) rectSizes.push(minValue);
-        const animDeltaPix = 17;
-        const animDeltaPixMinus = 5;
+        const FPSRate = 60;
+        const growingToMaxRadiusInSeconds = 0.05;
+        const decreaseToMinRadiusInSeconds = 0.3;
+
+        const radiusGrowingCoefficient =
+            (maxRadius - minRadius) / (FPSRate * growingToMaxRadiusInSeconds);
+        const radiusDecreaseCoefficient =
+            (maxRadius - minRadius) / (FPSRate * decreaseToMinRadiusInSeconds);
+
+        const segmentsRadius = [];
+        let growingSegmentIndex = 0;
+        for (let i = 0; i < segmentsAmount; i++) segmentsRadius.push(minRadius);
+
+        ctx.lineWidth = segmentWidth;
+        ctx.strokeStyle = color;
+
         const animFrame = () => {
             ctx.clearRect(0, 0, 500, 500);
-            let rectX = x;
+            let segmentsStartAngle = 0;
 
-            rectSizes.forEach((size, index) => {
-                if (index === curruentRectIndex)
-                    rectSizes[index] = Math.min(
-                        size + animDeltaPix * (size / maxValue),
-                        maxValue,
+            segmentsRadius.forEach((r, i) => {
+                if (i === growingSegmentIndex)
+                    segmentsRadius[i] = Math.min(
+                        r + radiusGrowingCoefficient * (r / maxRadius),
+                        maxRadius,
                     );
                 else
-                    rectSizes[index] = Math.max(
-                        size - animDeltaPixMinus * (size / maxValue),
-                        minValue,
+                    segmentsRadius[i] = Math.max(
+                        r - radiusDecreaseCoefficient * (maxRadius / r),
+                        minRadius,
                     );
 
-                let rectY = y + maxValue - size;
-                ctx.fillRect(rectX, rectY, width, size);
-                rectX += width + rectOffeset;
+                ctx.beginPath();
+                const endAngle =
+                    segmentsStartAngle + segmentLength - segmentOffset;
+                ctx.arc(x, y, r, segmentsStartAngle, endAngle);
+                ctx.stroke();
+
+                segmentsStartAngle += segmentLength;
             });
 
-            const rectheight = rectSizes[curruentRectIndex];
+            const growingSegmentRadius = segmentsRadius[growingSegmentIndex];
 
-            if (rectheight >= maxValue)
-                curruentRectIndex = (curruentRectIndex + 1) % rectAmount;
+            if (growingSegmentRadius >= maxRadius)
+                growingSegmentIndex =
+                    (growingSegmentIndex + 1) % segmentsAmount;
 
             requestAnimationFrame(animFrame);
         };
@@ -54,16 +75,14 @@ export const LoadingIndicator = () => {
     }, []);
 
     return (
-        <div>
+        <div style={{ width: size, ...style }} className={className}>
             <canvas
                 ref={canvas}
-                width={500}
-                height={500}
+                width={size}
+                height={size}
                 style={{
-                    width: 500,
-                    height: 500,
-                    outline: '1px dotted black',
-                    margin: 10,
+                    width: size,
+                    height: size,
                 }}
             ></canvas>
         </div>
