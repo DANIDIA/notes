@@ -1,5 +1,8 @@
 import { createContext, useEffect, useState } from 'react';
+import { createConfirmation } from 'react-confirm';
+
 import { BACKEND_URL } from './consts';
+import { ErrorInformationDialog } from './components/ErrorInformationDialog';
 
 export const ArticlesContext = createContext({
     articles: [],
@@ -13,6 +16,7 @@ export const ArticlesContext = createContext({
 
 export const ArticlesContextProvider = ({ children }) => {
     const [articles, setArticles] = useState([]);
+    const confirm = createConfirmation(ErrorInformationDialog);
     const [articlesLoadingStatus, setArticlesLoadingStatus] = useState({
         isLoading: true,
         error: null,
@@ -25,8 +29,8 @@ export const ArticlesContextProvider = ({ children }) => {
                 setArticlesLoadingStatus({ isLoading: false, error: null });
             })
             .catch((reason) => {
-                console.log('error');
                 setArticlesLoadingStatus({ isLoading: false, error: reason });
+                confirm({ errorInfo: reason });
             });
     }, []);
 
