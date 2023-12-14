@@ -8,18 +8,26 @@ export const ArticlesContext = createContext({
     removeArticleRequest: (id) => {},
     sendUpdatedArticle: (id, articleData) => {},
     getArticle: (id) => ({}),
-    articlesLoadingPromise: null,
+    articlesLoadingStatus: { isLoading: true, error: null },
 });
 
 export const ArticlesContextProvider = ({ children }) => {
     const [articles, setArticles] = useState([]);
-    const [articlesLoadingPromise, setArticlesLoadingPromise] = useState(null);
+    const [articlesLoadingStatus, setArticlesLoadingStatus] = useState({
+        isLoading: true,
+        error: null,
+    });
 
     useEffect(() => {
-        const promise = fetchArticles().then((_articles) => {
-            setArticles(_articles);
-        });
-        setArticlesLoadingPromise(promise);
+        fetchArticles()
+            .then((_articles) => {
+                setArticles(_articles);
+                setArticlesLoadingStatus({ isLoading: false, error: null });
+            })
+            .catch((reason) => {
+                console.log('error');
+                setArticlesLoadingStatus({ isLoading: false, error: reason });
+            });
     }, []);
 
     const fetchArticles = async () => {
@@ -107,7 +115,7 @@ export const ArticlesContextProvider = ({ children }) => {
                 removeArticleRequest,
                 sendUpdatedArticle,
                 getArticle,
-                articlesLoadingPromise,
+                articlesLoadingStatus,
             }}
         >
             {children}

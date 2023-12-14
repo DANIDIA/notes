@@ -7,23 +7,18 @@ import { ArticlesContext } from '../../../../pages/article/context';
 import classNames from 'classnames';
 
 export const Sidebar = (props) => {
-    const { articles, articlesLoadingPromise } = useContext(ArticlesContext);
+    const { articles, articlesLoadingStatus } = useContext(ArticlesContext);
     const [sidebarTitle, setSidebarTitle] = useState('Articles loading...');
 
     useEffect(() => {
-        if (!articlesLoadingPromise) return;
+        if (articlesLoadingStatus.isLoading) return;
 
-        articlesLoadingPromise
-            .then(() => {
-                articles.length > 0
-                    ? setSidebarTitle('Articles: ')
-                    : setSidebarTitle('No articles');
-            })
-            .catch((reason) => {
-                setSidebarTitle('Error');
-                alert(reason);
-            });
-    }, [articlesLoadingPromise, articles]);
+        if (!articlesLoadingStatus.error)
+            articles.length > 0
+                ? setSidebarTitle('Articles: ')
+                : setSidebarTitle('No articles');
+        else setSidebarTitle('Error');
+    }, [articlesLoadingStatus]);
 
     return (
         <div {...props} className={styles.sidebar}>
