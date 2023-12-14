@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Sidebar.module.css';
@@ -7,7 +7,18 @@ import { ArticlesContext } from '../../../../pages/article/context';
 import classNames from 'classnames';
 
 export const Sidebar = (props) => {
-    const { articles } = useContext(ArticlesContext);
+    const { articles, articlesLoadingStatus } = useContext(ArticlesContext);
+    const [sidebarTitle, setSidebarTitle] = useState('Articles loading...');
+
+    useEffect(() => {
+        if (articlesLoadingStatus.isLoading) return;
+
+        if (!articlesLoadingStatus.error)
+            articles.length > 0
+                ? setSidebarTitle('Articles: ')
+                : setSidebarTitle('No articles');
+        else setSidebarTitle('Error');
+    }, [articlesLoadingStatus]);
 
     return (
         <div {...props} className={styles.sidebar}>
@@ -20,7 +31,7 @@ export const Sidebar = (props) => {
                     [styles.noArticles]: articles.length === 0,
                 })}
             >
-                {articles.length ? 'Articles:' : 'No articles'}
+                {sidebarTitle}
             </h3>
 
             <ul>

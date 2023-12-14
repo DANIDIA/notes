@@ -1,27 +1,29 @@
 import { useParams } from 'react-router-dom';
-
-import styles from './ArticleViewPage.module.css';
 import { useContext } from 'react';
 import { ArticlesContext } from '../context';
+import styles from './ArticleViewPage.module.css';
+import { LoadingIndicator } from '../../../components/LoadingIndicator';
 
 export const ArticleViewPage = () => {
     const { articleId } = useParams();
-    const { getArticle, areArticlesLoaded } = useContext(ArticlesContext);
+    const { getArticle, articlesLoadingStatus } = useContext(ArticlesContext);
     const selectedArticle = getArticle(articleId);
 
-    return areArticlesLoaded ? (
+    return articlesLoadingStatus.error ? (
+        'ERROR'
+    ) : articlesLoadingStatus.isLoading ? (
+        <LoadingIndicator
+            size={200}
+            color="#21252b"
+            className={styles.loadingIndicator}
+        />
+    ) : (
         <div>
-            <div>
-                <div className={styles.articleForm}></div>
-            </div>
-
             <h1 className={styles.title}>{selectedArticle.title}</h1>
             <small className={styles.lessonDate}>
                 {selectedArticle.lessonDate}
             </small>
-            <p className={styles.content}>{selectedArticle.content}</p>
+            <p>{selectedArticle.content}</p>
         </div>
-    ) : (
-        'content is loading...'
     );
 };

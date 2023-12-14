@@ -1,5 +1,8 @@
 import { createContext, useEffect, useState } from 'react';
+import { createConfirmation } from 'react-confirm';
+
 import { BACKEND_URL } from './consts';
+import { ErrorInformationDialog } from './components/ErrorInformationDialog';
 
 export const ArticlesContext = createContext({
     articles: [],
@@ -8,23 +11,34 @@ export const ArticlesContext = createContext({
     removeArticleRequest: (id) => {},
     sendUpdatedArticle: (id, articleData) => {},
     getArticle: (id) => ({}),
-    areArticlesLoaded: false,
+    articlesLoadingStatus: { isLoading: true, error: null },
 });
 
 export const ArticlesContextProvider = ({ children }) => {
     const [articles, setArticles] = useState([]);
-    const [areArticlesLoaded, setAreArticlesLoaded] = useState(false);
+    const confirm = createConfirmation(ErrorInformationDialog);
+    const [articlesLoadingStatus, setArticlesLoadingStatus] = useState({
+        isLoading: true,
+        error: null,
+    });
 
     useEffect(() => {
-        (async () => {
-            console.log('preload starts');
-            const _articles = await fetchArticles();
-            setArticles(_articles);
-        })().then(() => setAreArticlesLoaded(true));
+        fetchArticles()
+            .then((_articles) => {
+                setArticles(_articles);
+                setArticlesLoadingStatus({ isLoading: false, error: null });
+            })
+            .catch((reason) => {
+                setArticlesLoadingStatus({ isLoading: false, error: reason });
+                confirm({ errorInfo: reason });
+            });
     }, []);
 
     const fetchArticles = async () => {
         const response = await fetch(BACKEND_URL, { method: 'get' });
+
+        if (!response.ok) return Promise.reject(response.status);
+
         const json = await response.json();
         const _articles = [];
 
@@ -52,6 +66,8 @@ export const ArticlesContextProvider = ({ children }) => {
             },
         });
 
+        if (!response.ok) return Promise.reject(response.status);
+
         const id = (await response.json()).Id;
 
         const _articles = [...articles, { id, ...articleData }];
@@ -65,7 +81,7 @@ export const ArticlesContextProvider = ({ children }) => {
             method: 'delete',
         });
 
-        if (!response.ok) return;
+        if (!response.ok) return Promise.reject(response.status);
 
         const _articles = articles.filter((a) => a.id !== id);
         setArticles(_articles);
@@ -83,7 +99,7 @@ export const ArticlesContextProvider = ({ children }) => {
             },
         });
 
-        if (!response.ok) return;
+        if (!response.ok) return Promise.reject(response.status);
 
         const _articles = articles.map((a) =>
             a.id === id ? { id, ...articleData } : a,
@@ -103,7 +119,7 @@ export const ArticlesContextProvider = ({ children }) => {
                 removeArticleRequest,
                 sendUpdatedArticle,
                 getArticle,
-                areArticlesLoaded,
+                articlesLoadingStatus,
             }}
         >
             {children}

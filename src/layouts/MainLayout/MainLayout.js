@@ -24,7 +24,6 @@ export const MainLayout = () => {
 
             <div className={styles.content}>
                 <Sidebar style={{ height: windowHeight }} />
-
                 <div className={styles.articleContainer}>
                     <Outlet />
                 </div>
